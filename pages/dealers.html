@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find Dealers — CarCat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .dealer-list-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      transition: all var(--transition);
+      cursor: pointer;
+      margin-bottom: 14px;
+    }
+    .dealer-list-card:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .dealer-list-logo { width: 80px; height: 80px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; font-family: var(--font-display); color: white; flex-shrink: 0; }
+    .dealer-list-info h3 { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--secondary); margin-bottom: 5px; }
+    .dealer-list-meta { display: flex; gap: 16px; font-size: 13px; color: var(--text-muted); flex-wrap: wrap; margin-bottom: 10px; }
+    .dealer-list-meta span { display: flex; align-items: center; gap: 4px; }
+    .dealer-list-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .dealer-tag { font-size: 11.5px; padding: 3px 10px; border-radius: 20px; background: var(--surface-2); color: var(--text-muted); }
+    .dealer-list-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+    .rating-stars { display: flex; align-items: center; gap: 4px; font-size: 13px; color: var(--text-muted); }
+    .rating-stars .stars { color: #f5a623; }
+    .map-embed { width: 100%; height: 320px; border-radius: var(--radius-lg); border: 1.5px solid var(--border); background: var(--surface-2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .map-placeholder { text-align: center; color: var(--text-muted); }
+    .map-placeholder i { font-size: 48px; color: var(--primary); margin-bottom: 12px; }
+    @media (max-width: 640px) {
+      .dealer-list-card { grid-template-columns: 60px 1fr; }
+      .dealer-list-actions { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#"><i class="bi bi-envelope"></i> hello@carcat.co.ke</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="sell.html">Sell a Car</a>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="../index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="listing.html" class="nav-link">Cars <i class="bi bi-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="listing.html"><i class="bi bi-stars"></i> New Cars</a>
+            <a href="listing.html"><i class="bi bi-car-front"></i> Used Cars</a>
+            <a href="listing.html"><i class="bi bi-lightning-charge"></i> Electric</a>
+            <a href="listing.html"><i class="bi bi-truck"></i> SUVs &amp; 4x4s</a>
+          </div>
+        </li>
+        <li class="nav-item"><a href="dealers.html" class="nav-link active">Dealers</a></li>
+        <li class="nav-item"><a href="models.html" class="nav-link">Models</a></li>
+        <li class="nav-item"><a href="articles.html" class="nav-link">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+        <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="dealers.html" class="mobile-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+  <a href="models.html" class="mobile-nav-link">Models <i class="bi bi-chevron-right"></i></a>
+  <a href="articles.html" class="mobile-nav-link">News &amp; Guides <i class="bi bi-chevron-right"></i></a>
+  <a href="sell.html" class="mobile-nav-link">Sell a Car <i class="bi bi-chevron-right"></i></a>
+</div>
+
+<!-- PAGE HERO -->
+<div style="background:linear-gradient(135deg,var(--secondary) 0%,#1e3a5f 100%);padding:calc(var(--nav-h) + 34px + 36px) 0 44px;">
+  <div class="container">
+    <div class="listing-breadcrumb" style="margin-bottom:12px;">
+      <a href="../index.html" style="color:rgba(255,255,255,.5);">Home</a>
+      <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+      <span style="color:rgba(255,255,255,.8);">Dealers</span>
+    </div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:800;color:white;margin-bottom:10px;">Find a <span style="color:var(--primary);">Trusted Dealer</span></h1>
+    <p style="font-size:15px;color:rgba(255,255,255,.65);max-width:500px;margin-bottom:28px;">Browse verified dealerships across Kenya. All dealers are screened and rated by real buyers.</p>
+    <!-- dealer search -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;max-width:680px;">
+      <input type="text" placeholder="Search by dealer name or location…" class="field-input" style="flex:1;min-width:200px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:white;" />
+      <select class="field-select" style="width:160px;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:white;">
+        <option style="color:#000;">All Locations</option>
+        <option style="color:#000;">Nairobi</option>
+        <option style="color:#000;">Mombasa</option>
+        <option style="color:#000;">Kisumu</option>
+        <option style="color:#000;">Nakuru</option>
+      </select>
+      <button class="search-btn" style="height:48px;"><i class="bi bi-search"></i> Search</button>
+    </div>
+    <div style="display:flex;gap:28px;margin-top:28px;">
+      <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">340+</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Registered Dealers</div></div>
+      <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">12,400+</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Active Listings</div></div>
+      <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">100%</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Verified &amp; Screened</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div style="padding:48px 0 80px;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 340px;gap:28px;align-items:start;">
+
+      <!-- DEALER LIST -->
+      <div>
+        <!-- Filter tabs -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+          <div class="listings-filter-tabs" style="margin-bottom:0;">
+            <button class="filter-tab active">All Dealers</button>
+            <button class="filter-tab">Nairobi</button>
+            <button class="filter-tab">Mombasa</button>
+            <button class="filter-tab">Kisumu</button>
+            <button class="filter-tab">Top Rated</button>
+          </div>
+          <p style="font-size:13px;color:var(--text-muted);"><strong style="color:var(--secondary);">28</strong> dealers found</p>
+        </div>
+
+        <!-- Cards -->
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));">B</div>
+          <div class="dealer-list-info">
+            <h3>Baypoa Motors <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Westlands, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 23 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2017</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">New Cars</span>
+              <span class="dealer-tag">Used Cars</span>
+              <span class="dealer-tag">SUVs</span>
+              <span class="dealer-tag">Financing</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★★</span> <strong style="color:var(--secondary);">4.9</strong> <span>(62 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,#0a2a5e,#1a4a8e);">M</div>
+          <div class="dealer-list-info">
+            <h3>Brill Motors <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Garden City, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 17 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2020</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">Used Cars</span>
+              <span class="dealer-tag">Subaru</span>
+              <span class="dealer-tag">Mazda</span>
+              <span class="dealer-tag">Toyota</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★★</span> <strong style="color:var(--secondary);">4.8</strong> <span>(41 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,#1a5e1a,#2a8e2a);">A</div>
+          <div class="dealer-list-info">
+            <h3>Aquatadas Motors <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Kiambu Rd, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 31 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2022</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">Luxury Cars</span>
+              <span class="dealer-tag">Land Rover</span>
+              <span class="dealer-tag">Mercedes</span>
+              <span class="dealer-tag">Mazda</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★☆</span> <strong style="color:var(--secondary);">4.7</strong> <span>(38 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,#5e1a3a,#8e2a5a);">K</div>
+          <div class="dealer-list-info">
+            <h3>Kilimani Auto Mart <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Kilimani, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 45 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2013</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">New Cars</span>
+              <span class="dealer-tag">Used Cars</span>
+              <span class="dealer-tag">Classic</span>
+              <span class="dealer-tag">Financing</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★★</span> <strong style="color:var(--secondary);">4.9</strong> <span>(118 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,#1a4a5e,#2a7a8e);">N</div>
+          <div class="dealer-list-info">
+            <h3>Nairobi Car Centre <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Upper Hill, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 38 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2015</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">Toyota</span>
+              <span class="dealer-tag">Nissan</span>
+              <span class="dealer-tag">Honda</span>
+              <span class="dealer-tag">Mitsubishi</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★☆</span> <strong style="color:var(--secondary);">4.5</strong> <span>(74 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="dealer-list-card" onclick="window.location='dealer-profile.html'">
+          <div class="dealer-list-logo" style="background:linear-gradient(135deg,#5e4a1a,#8e7a2a);">E</div>
+          <div class="dealer-list-info">
+            <h3>EastAfrica Auto Group <span style="font-size:12px;font-weight:500;color:#10b981;margin-left:6px;"><i class="bi bi-patch-check-fill"></i> Verified</span></h3>
+            <div class="dealer-list-meta">
+              <span><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Mombasa Road, Nairobi</span>
+              <span><i class="bi bi-car-front" style="color:var(--primary);"></i> 54 listings</span>
+              <span><i class="bi bi-clock" style="color:var(--primary);"></i> Member since 2011</span>
+            </div>
+            <div class="dealer-list-tags">
+              <span class="dealer-tag">Imports</span>
+              <span class="dealer-tag">Fleet</span>
+              <span class="dealer-tag">Commercial</span>
+              <span class="dealer-tag">Vans</span>
+            </div>
+          </div>
+          <div class="dealer-list-actions">
+            <div class="rating-stars"><span class="stars">★★★★☆</span> <strong style="color:var(--secondary);">4.6</strong> <span>(93 reviews)</span></div>
+            <a href="dealer-profile.html" class="btn btn-primary btn-sm">View Dealer</a>
+            <a href="listing.html" class="btn btn-ghost btn-sm">See Listings</a>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <button class="page-btn"><i class="bi bi-chevron-left"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div style="position:sticky;top:calc(var(--nav-h) + 34px + 20px);">
+        <!-- Map placeholder -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:20px;">
+          <div style="padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+            <h4 style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--secondary);"><i class="bi bi-map" style="color:var(--primary);margin-right:6px;"></i> Dealer Map</h4>
+            <span style="font-size:12px;color:var(--text-muted);">28 dealers</span>
+          </div>
+          <div class="map-embed">
+            <div class="map-placeholder">
+              <i class="bi bi-geo-alt-fill"></i>
+              <p style="font-size:14px;font-weight:500;margin-bottom:4px;">Interactive Map</p>
+              <p style="font-size:12px;">Embed Google Maps API here</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Become a dealer CTA -->
+        <div style="background:var(--secondary);border-radius:var(--radius-lg);padding:24px;text-align:center;">
+          <div style="width:52px;height:52px;border-radius:50%;background:rgba(232,65,10,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><i class="bi bi-shop" style="color:var(--primary);font-size:22px;"></i></div>
+          <h4 style="font-family:var(--font-display);font-size:16px;font-weight:700;color:white;margin-bottom:8px;">Are You a Dealer?</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:18px;">Join 340+ dealers reaching thousands of buyers every month.</p>
+          <a href="sell.html" class="btn btn-primary w-100" style="justify-content:center;border:none;">Register as a Dealer</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span style="color:var(--primary)">Cat</span>
+        </a>
+        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs &amp; 4x4s</a></li><li><a href="listing.html">Pickups</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Car Finance</a></li><li><a href="#">Insurance</a></li><li><a href="#">History Check</a></li><li><a href="#">Valuation</a></li></ul></div>
+      <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Vehicle</a></li><li><a href="#">Dealer Packages</a></li><li><a href="#">Dealer Dashboard</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="articles.html">News</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Cookie Settings</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

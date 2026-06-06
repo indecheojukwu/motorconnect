@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baypoa Motors — CarCat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .review-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 14px; }
+    .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .review-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; color: white; flex-shrink: 0; }
+    .review-stars { color: #f5a623; font-size: 13px; margin-bottom: 4px; }
+    .review-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .review-date { font-size: 12px; color: var(--text-light); margin-top: 8px; }
+    .rating-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .rating-bar-label { font-size: 12px; color: var(--text-muted); width: 40px; }
+    .rating-bar-track { flex: 1; height: 6px; background: var(--surface-2); border-radius: 3px; overflow: hidden; }
+    .rating-bar-fill { height: 100%; background: #f5a623; border-radius: 3px; }
+    .rating-bar-count { font-size: 12px; color: var(--text-muted); width: 28px; text-align: right; }
+    .tab-nav { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin-bottom: 28px; }
+    .tab-nav-btn { font-family: var(--font-body); font-size: 14px; font-weight: 600; padding: 12px 22px; border: none; background: transparent; color: var(--text-muted); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all var(--transition); }
+    .tab-nav-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+    .tab-nav-btn:hover:not(.active) { color: var(--secondary); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#">hello@carcat.co.ke</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="sell.html">Sell a Car</a>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="../index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="listing.html" class="nav-link">Cars</a></li>
+        <li class="nav-item"><a href="dealers.html" class="nav-link active">Dealers</a></li>
+        <li class="nav-item"><a href="models.html" class="nav-link">Models</a></li>
+        <li class="nav-item"><a href="articles.html" class="nav-link">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+        <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="dealers.html" class="mobile-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+</div>
+
+<!-- DEALER HERO -->
+<div class="dealer-hero">
+  <div class="container">
+    <div class="listing-breadcrumb" style="margin-bottom:20px;">
+      <a href="../index.html" style="color:rgba(255,255,255,.45);">Home</a>
+      <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+      <a href="dealers.html" style="color:rgba(255,255,255,.45);">Dealers</a>
+      <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+      <span style="color:rgba(255,255,255,.8);">Baypoa Motors</span>
+    </div>
+    <div class="dealer-hero-inner">
+      <div class="dealer-hero-logo">B</div>
+      <div class="dealer-hero-info">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+          <h1>Baypoa Motors</h1>
+          <span style="font-size:12px;font-weight:600;background:rgba(16,185,129,.2);color:#6ee7b7;padding:3px 10px;border-radius:20px;display:flex;align-items:center;gap:4px;"><i class="bi bi-patch-check-fill"></i> Verified Dealer</span>
+        </div>
+        <div class="dealer-hero-meta">
+          <span><i class="bi bi-geo-alt-fill"></i> Westlands, Nairobi, Kenya</span>
+          <span><i class="bi bi-telephone-fill"></i> +254 722 000 001</span>
+          <span><i class="bi bi-globe2"></i> baypoamotors.co.ke</span>
+          <span><i class="bi bi-clock-fill"></i> Open: Mon–Sat, 8am–6pm</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:10px;">
+          <span style="color:#f5a623;font-size:16px;">★★★★★</span>
+          <strong style="color:white;font-size:15px;">4.9</strong>
+          <span style="color:rgba(255,255,255,.5);font-size:13px;">(62 reviews)</span>
+          <span style="color:rgba(255,255,255,.2);">·</span>
+          <span style="color:rgba(255,255,255,.5);font-size:13px;">Member since 2017</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="tel:+254722000001" class="btn btn-primary"><i class="bi bi-telephone-fill"></i> Call Now</a>
+        <button class="btn btn-white"><i class="bi bi-envelope"></i> Send Message</button>
+        <button class="btn btn-ghost" style="border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.8);"><i class="bi bi-share"></i> Share</button>
+      </div>
+    </div>
+
+    <div class="dealer-stats-bar">
+      <div class="dealer-stat-item"><div class="val">23</div><div class="lbl">Active Listings</div></div>
+      <div class="dealer-stat-item"><div class="val">4.9</div><div class="lbl">Avg Rating</div></div>
+      <div class="dealer-stat-item"><div class="val">62</div><div class="lbl">Reviews</div></div>
+      <div class="dealer-stat-item"><div class="val">8yr</div><div class="lbl">On CarCat</div></div>
+      <div class="dealer-stat-item"><div class="val">240+</div><div class="lbl">Cars Sold</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div style="padding:40px 0 80px;background:var(--surface);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;">
+
+      <!-- LEFT: TABS CONTENT -->
+      <div>
+        <div class="tab-nav">
+          <button class="tab-nav-btn active" onclick="showTab('listings',this)">Listings (23)</button>
+          <button class="tab-nav-btn" onclick="showTab('reviews',this)">Reviews (62)</button>
+          <button class="tab-nav-btn" onclick="showTab('about',this)">About</button>
+        </div>
+
+        <!-- LISTINGS TAB -->
+        <div id="tab-listings">
+          <div class="vehicles-grid" style="grid-template-columns:repeat(3,1fr);">
+            <div class="vehicle-card" onclick="window.location='detail.html'">
+              <div class="vehicle-img-wrap">
+                <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Prado" loading="lazy"/>
+                <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+                <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+              </div>
+              <div class="vehicle-body">
+                <div class="vehicle-make">Toyota</div>
+                <div class="vehicle-name">Land Cruiser Prado TZG</div>
+                <div class="vehicle-price">KES 9,000,000</div>
+                <div class="vehicle-specs">
+                  <span class="spec-tag"><i class="bi bi-calendar3"></i> 2020</span>
+                  <span class="spec-tag"><i class="bi bi-speedometer2"></i> 45k km</span>
+                </div>
+                <div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div>
+              </div>
+            </div>
+            <div class="vehicle-card" onclick="window.location='detail.html'">
+              <div class="vehicle-img-wrap">
+                <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="Hilux" loading="lazy"/>
+                <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+                <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+              </div>
+              <div class="vehicle-body">
+                <div class="vehicle-make">Toyota</div>
+                <div class="vehicle-name">Hilux GD-6 4x4 DC</div>
+                <div class="vehicle-price">KES 4,800,000</div>
+                <div class="vehicle-specs">
+                  <span class="spec-tag"><i class="bi bi-calendar3"></i> 2021</span>
+                  <span class="spec-tag"><i class="bi bi-speedometer2"></i> 38k km</span>
+                </div>
+                <div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div>
+              </div>
+            </div>
+            <div class="vehicle-card" onclick="window.location='detail.html'">
+              <div class="vehicle-img-wrap">
+                <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&q=80" alt="CX-8" loading="lazy"/>
+                <div class="vehicle-badges"><span class="badge-new">New</span></div>
+                <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+              </div>
+              <div class="vehicle-body">
+                <div class="vehicle-make">Mazda</div>
+                <div class="vehicle-name">CX-8 XDL AWD</div>
+                <div class="vehicle-price">KES 3,700,000</div>
+                <div class="vehicle-specs">
+                  <span class="spec-tag"><i class="bi bi-calendar3"></i> 2019</span>
+                  <span class="spec-tag"><i class="bi bi-speedometer2"></i> 22k km</span>
+                </div>
+                <div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-6">
+            <a href="listing.html" class="btn btn-outline">View All 23 Listings <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div id="tab-reviews" style="display:none;">
+          <!-- Rating summary -->
+          <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:20px;display:grid;grid-template-columns:140px 1fr;gap:28px;align-items:center;">
+            <div style="text-align:center;">
+              <div style="font-family:var(--font-display);font-size:56px;font-weight:800;color:var(--secondary);line-height:1;">4.9</div>
+              <div style="color:#f5a623;font-size:20px;margin:4px 0;">★★★★★</div>
+              <div style="font-size:12px;color:var(--text-muted);">62 reviews</div>
+            </div>
+            <div>
+              <div class="rating-bar-row"><span class="rating-bar-label">5 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:88%;"></div></div><span class="rating-bar-count">55</span></div>
+              <div class="rating-bar-row"><span class="rating-bar-label">4 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:10%;background:#a3c4f3;"></div></div><span class="rating-bar-count">6</span></div>
+              <div class="rating-bar-row"><span class="rating-bar-label">3 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%;background:#fcd34d;"></div></div><span class="rating-bar-count">1</span></div>
+              <div class="rating-bar-row"><span class="rating-bar-label">2 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%;"></div></div><span class="rating-bar-count">0</span></div>
+              <div class="rating-bar-row"><span class="rating-bar-label">1 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%;"></div></div><span class="rating-bar-count">0</span></div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:var(--primary);">JM</div>
+              <div><strong style="font-size:14px;color:var(--secondary);">James Mwangi</strong><div class="review-stars">★★★★★</div></div>
+            </div>
+            <p class="review-text">Bought a Hilux from Baypoa and the entire experience was excellent. The team was honest about the car's history, let me do an independent inspection, and the paperwork was smooth. Highly recommend!</p>
+            <div class="review-date">April 12, 2025</div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:#0a2a5e;">AK</div>
+              <div><strong style="font-size:14px;color:var(--secondary);">Aisha Kamau</strong><div class="review-stars">★★★★★</div></div>
+            </div>
+            <p class="review-text">Very professional. Got a great deal on my Prado and they even helped arrange financing. Will definitely come back for my next car.</p>
+            <div class="review-date">March 5, 2025</div>
+          </div>
+          <div class="review-card">
+            <div class="review-header">
+              <div class="review-avatar" style="background:#1a5e1a;">RO</div>
+              <div><strong style="font-size:14px;color:var(--secondary);">Robert Odhiambo</strong><div class="review-stars">★★★★☆</div></div>
+            </div>
+            <p class="review-text">Good selection of vehicles and transparent pricing. Took a bit longer than expected to get the transfer documents but overall a trustworthy dealer.</p>
+            <div class="review-date">February 18, 2025</div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-ghost">Load More Reviews</button>
+          </div>
+        </div>
+
+        <!-- ABOUT TAB -->
+        <div id="tab-about" style="display:none;">
+          <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:28px;">
+            <h3 style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--secondary);margin-bottom:14px;">About Baypoa Motors</h3>
+            <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Baypoa Motors is one of Nairobi's most trusted used car dealerships, established in 2017 and based in Westlands. We specialise in quality Japanese imports, locally used vehicles, and direct imports from the UK and UAE.</p>
+            <p style="font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:24px;">Our team of experienced automotive professionals ensures that every vehicle in our inventory is thoroughly inspected, properly documented and fairly priced. We offer flexible financing options through partnered banks and SACCOs.</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+              <div style="background:var(--surface);border-radius:var(--radius);padding:16px;"><h5 style="font-size:13px;font-weight:700;color:var(--secondary);margin-bottom:6px;"><i class="bi bi-clock" style="color:var(--primary);"></i> Opening Hours</h5><p style="font-size:13px;color:var(--text-muted);">Mon – Sat: 8:00am – 6:00pm<br>Sunday: 10:00am – 4:00pm</p></div>
+              <div style="background:var(--surface);border-radius:var(--radius);padding:16px;"><h5 style="font-size:13px;font-weight:700;color:var(--secondary);margin-bottom:6px;"><i class="bi bi-geo-alt" style="color:var(--primary);"></i> Location</h5><p style="font-size:13px;color:var(--text-muted);">Westlands Commercial Centre,<br>Nairobi, Kenya</p></div>
+              <div style="background:var(--surface);border-radius:var(--radius);padding:16px;"><h5 style="font-size:13px;font-weight:700;color:var(--secondary);margin-bottom:6px;"><i class="bi bi-telephone" style="color:var(--primary);"></i> Contact</h5><p style="font-size:13px;color:var(--text-muted);">+254 722 000 001<br>info@baypoamotors.co.ke</p></div>
+              <div style="background:var(--surface);border-radius:var(--radius);padding:16px;"><h5 style="font-size:13px;font-weight:700;color:var(--secondary);margin-bottom:6px;"><i class="bi bi-tools" style="color:var(--primary);"></i> Services</h5><p style="font-size:13px;color:var(--text-muted);">Pre-purchase inspections,<br>Financing assistance, Trade-ins</p></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /left -->
+
+      <!-- RIGHT SIDEBAR -->
+      <div style="position:sticky;top:calc(var(--nav-h) + 34px + 20px);">
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;">Contact Baypoa Motors</h4>
+          <input type="text" class="contact-form-field" placeholder="Your name" style="width:100%;display:block;margin-bottom:10px;" />
+          <input type="tel" class="contact-form-field" placeholder="Phone number" style="width:100%;display:block;margin-bottom:10px;" />
+          <textarea class="contact-form-field contact-textarea" placeholder="What are you looking for?" style="width:100%;display:block;margin-bottom:10px;"></textarea>
+          <button class="btn btn-primary w-100" style="justify-content:center;border:none;margin-bottom:8px;"><i class="bi bi-envelope-fill"></i> &nbsp;Send Enquiry</button>
+          <a href="tel:+254722000001" class="btn btn-ghost w-100" style="justify-content:center;"><i class="bi bi-telephone-fill"></i> &nbsp;+254 722 000 001</a>
+        </div>
+        <div style="background:var(--secondary);border-radius:var(--radius-lg);padding:20px;text-align:center;">
+          <i class="bi bi-share" style="font-size:28px;color:var(--primary);display:block;margin-bottom:10px;"></i>
+          <h5 style="font-family:var(--font-display);font-size:14px;font-weight:700;color:white;margin-bottom:8px;">Share this Dealer</h5>
+          <div style="display:flex;gap:8px;justify-content:center;margin-top:10px;">
+            <a class="social-btn" href="#"><i class="bi bi-whatsapp"></i></a>
+            <a class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
+            <a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a>
+            <a class="social-btn" href="#"><i class="bi bi-link-45deg"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span style="color:var(--primary)">Cat</span>
+        </a>
+        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Finance</a></li><li><a href="#">Insurance</a></li><li><a href="#">Valuation</a></li></ul></div>
+      <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Car</a></li><li><a href="#">Packages</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="articles.html">News</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+function showTab(name, btn) {
+  ['listings','reviews','about'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sell or List a Car — CarCat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .step-indicator { display: flex; align-items: center; gap: 0; margin-bottom: 40px; }
+    .step-dot { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    .step-circle { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: var(--text-muted); position: relative; z-index: 1; transition: all var(--transition); }
+    .step-circle.active { background: var(--primary); border-color: var(--primary); color: white; }
+    .step-circle.done { background: #10b981; border-color: #10b981; color: white; }
+    .step-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-align: center; }
+    .step-label.active { color: var(--primary); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin-top: -22px; }
+    .step-line.done { background: #10b981; }
+
+    .form-section { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 28px; margin-bottom: 20px; }
+    .form-section-title { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--secondary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .form-section-title i { color: var(--primary); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--text-muted); }
+    .form-control-cc { width: 100%; height: 46px; padding: 0 14px; border: 1.5px solid var(--border); border-radius: var(--radius); font-family: var(--font-body); font-size: 14px; color: var(--text); background: var(--white); outline: none; transition: border-color var(--transition); }
+    .form-control-cc:focus { border-color: var(--primary); }
+    .form-control-cc.textarea { height: 110px; padding: 12px 14px; resize: vertical; }
+    select.form-control-cc { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7385' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; }
+    .photo-upload-zone { border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 40px 20px; text-align: center; cursor: pointer; transition: all var(--transition); background: var(--surface); }
+    .photo-upload-zone:hover { border-color: var(--primary); background: rgba(232,65,10,.03); }
+    .photo-upload-zone i { font-size: 40px; color: var(--text-light); margin-bottom: 12px; display: block; }
+    .photo-upload-zone p { font-size: 14px; color: var(--text-muted); margin-bottom: 4px; }
+    .photo-upload-zone small { font-size: 12px; color: var(--text-light); }
+    .package-card { border: 2px solid var(--border); border-radius: var(--radius-lg); padding: 24px 20px; cursor: pointer; transition: all var(--transition); text-align: center; }
+    .package-card.selected { border-color: var(--primary); background: rgba(232,65,10,.04); }
+    .package-card:hover:not(.selected) { border-color: var(--secondary); }
+    .package-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
+    .package-price { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: var(--secondary); margin-bottom: 4px; }
+    .package-name { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-bottom: 14px; }
+    .package-features { text-align: left; display: flex; flex-direction: column; gap: 8px; }
+    .package-feature { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-muted); }
+    .package-feature i { color: #10b981; font-size: 12px; }
+    .tip-box { background: rgba(232,65,10,.06); border: 1.5px solid rgba(232,65,10,.15); border-radius: var(--radius); padding: 12px 16px; display: flex; gap: 10px; font-size: 13px; color: var(--text-muted); }
+    .tip-box i { color: var(--primary); flex-shrink: 0; margin-top: 1px; }
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#">hello@carcat.co.ke</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="#">Sign In</a>
+        <a href="#">Create Account</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="../index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="listing.html" class="nav-link">Cars</a></li>
+        <li class="nav-item"><a href="dealers.html" class="nav-link">Dealers</a></li>
+        <li class="nav-item"><a href="models.html" class="nav-link">Models</a></li>
+        <li class="nav-item"><a href="articles.html" class="nav-link">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+        <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="sell.html" class="mobile-nav-link">Sell a Car <i class="bi bi-chevron-right"></i></a>
+</div>
+
+<!-- SELL HERO -->
+<div style="background:linear-gradient(135deg,var(--secondary) 0%,#1e3a5f 100%);padding:calc(var(--nav-h) + 34px + 36px) 0 50px;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+      <div>
+        <div class="listing-breadcrumb" style="margin-bottom:14px;">
+          <a href="../index.html" style="color:rgba(255,255,255,.5);">Home</a>
+          <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+          <span style="color:rgba(255,255,255,.8);">Sell a Car</span>
+        </div>
+        <h1 style="font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:800;color:white;line-height:1.1;margin-bottom:14px;">List Your Car.<br><span style="color:var(--primary);">Reach 50,000+</span><br>Buyers Today.</h1>
+        <p style="font-size:15px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:24px;">Kenya's fastest growing car marketplace. Get your vehicle in front of qualified buyers in minutes — no commission for private sellers.</p>
+        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+          <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">Free</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Basic listing</div></div>
+          <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">3 days</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Avg. time to sell</div></div>
+          <div><span style="font-family:var(--font-display);font-size:26px;font-weight:800;color:white;">50K+</span><div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;">Monthly buyers</div></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:18px 22px;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(232,65,10,.3);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">1</div>
+          <div><h4 style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">Create your listing</h4><p style="font-size:13px;color:rgba(255,255,255,.5);">Add vehicle details, photos and price</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:18px 22px;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(232,65,10,.3);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">2</div>
+          <div><h4 style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">Buyers get in touch</h4><p style="font-size:13px;color:rgba(255,255,255,.5);">Receive direct calls and messages</p></div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);padding:18px 22px;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:50%;background:rgba(232,65,10,.3);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;flex-shrink:0;">3</div>
+          <div><h4 style="font-size:14px;font-weight:600;color:white;margin-bottom:3px;">Sell &amp; get paid</h4><p style="font-size:13px;color:rgba(255,255,255,.5);">Zero commission for private sellers</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LISTING FORM -->
+<div style="padding:48px 0 80px;background:var(--surface);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start;">
+
+      <!-- FORM -->
+      <div>
+        <!-- Step indicator -->
+        <div class="step-indicator">
+          <div class="step-dot">
+            <div class="step-circle active">1</div>
+            <div class="step-label active">Vehicle Info</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot">
+            <div class="step-circle">2</div>
+            <div class="step-label">Photos</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot">
+            <div class="step-circle">3</div>
+            <div class="step-label">Pricing</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot">
+            <div class="step-circle">4</div>
+            <div class="step-label">Package</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-dot">
+            <div class="step-circle">5</div>
+            <div class="step-label">Publish</div>
+          </div>
+        </div>
+
+        <!-- STEP 1: Vehicle Info -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-car-front"></i> Vehicle Information</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Make *</label>
+              <select class="form-control-cc">
+                <option value="">Select Make</option>
+                <option>Toyota</option><option>Subaru</option><option>Mazda</option>
+                <option>Mercedes-Benz</option><option>BMW</option><option>Land Rover</option>
+                <option>Nissan</option><option>Honda</option><option>Mitsubishi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Model *</label>
+              <select class="form-control-cc"><option value="">Select Model</option></select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Year *</label>
+              <select class="form-control-cc">
+                <option value="">Select Year</option>
+                <option>2025</option><option>2024</option><option>2023</option><option>2022</option>
+                <option>2021</option><option>2020</option><option>2019</option><option>2018</option>
+                <option>2017</option><option>2016</option><option>2015</option><option>2014</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Variant / Trim</label>
+              <input type="text" class="form-control-cc" placeholder="e.g. TZG, XT, Sport" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Body Type *</label>
+              <select class="form-control-cc">
+                <option value="">Select Body Type</option>
+                <option>SUV / 4x4</option><option>Sedan</option><option>Hatchback</option>
+                <option>Pickup</option><option>Van / Minibus</option><option>Wagon</option>
+                <option>Convertible</option><option>Coupe</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Condition *</label>
+              <select class="form-control-cc">
+                <option value="">Select Condition</option>
+                <option>Brand New</option><option>Used — Excellent</option>
+                <option>Used — Good</option><option>Used — Fair</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 1b: Technical Specs -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-gear"></i> Technical Specifications</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Mileage (km) *</label>
+              <input type="number" class="form-control-cc" placeholder="e.g. 45000" />
+            </div>
+            <div class="form-group">
+              <label>Engine Size (cc)</label>
+              <input type="text" class="form-control-cc" placeholder="e.g. 3000" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Transmission *</label>
+              <select class="form-control-cc">
+                <option value="">Select</option>
+                <option>Automatic</option><option>Manual</option><option>CVT</option><option>Semi-Auto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Fuel Type *</label>
+              <select class="form-control-cc">
+                <option value="">Select</option>
+                <option>Petrol</option><option>Diesel</option><option>Hybrid</option>
+                <option>Electric</option><option>CNG</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Drivetrain</label>
+              <select class="form-control-cc">
+                <option value="">Select</option>
+                <option>4WD</option><option>AWD</option><option>FWD</option><option>RWD</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Colour *</label>
+              <input type="text" class="form-control-cc" placeholder="e.g. Silver, Black" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Number of Seats</label>
+              <select class="form-control-cc">
+                <option>2</option><option>4</option><option>5</option><option>7</option><option>8</option><option>9+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Registration Number</label>
+              <input type="text" class="form-control-cc" placeholder="e.g. KDX 123A" />
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom:16px;">
+            <label>Vehicle Description *</label>
+            <textarea class="form-control-cc textarea" placeholder="Describe your vehicle in detail — condition, service history, modifications, reasons for selling, etc."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Key Features (tick all that apply)</label>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;">
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Sunroof</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Leather Seats</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Reverse Camera</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Navigation</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Cruise Control</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Alloy Wheels</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Android Auto</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> Heated Seats</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-muted);cursor:pointer;"><input type="checkbox" style="accent-color:var(--primary);"> 360° Camera</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Photos -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-camera"></i> Vehicle Photos</div>
+          <div class="tip-box" style="margin-bottom:18px;">
+            <i class="bi bi-lightbulb-fill"></i>
+            <span>Listings with 8+ photos sell <strong>3x faster</strong>. Include front, rear, sides, interior, dashboard, engine bay and any damage.</span>
+          </div>
+          <div class="photo-upload-zone">
+            <i class="bi bi-cloud-upload"></i>
+            <p><strong>Click to upload photos</strong> or drag and drop</p>
+            <small>JPG, PNG, WEBP · Up to 20 photos · Max 5MB each</small>
+          </div>
+        </div>
+
+        <!-- STEP 3: Pricing -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-cash-coin"></i> Pricing</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Asking Price (KES) *</label>
+              <input type="number" class="form-control-cc" placeholder="e.g. 9000000" />
+            </div>
+            <div class="form-group">
+              <label>Price Negotiable?</label>
+              <select class="form-control-cc">
+                <option>Yes, open to offers</option>
+                <option>Fixed price</option>
+                <option>No — firm price</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Location (where the car can be viewed) *</label>
+            <input type="text" class="form-control-cc" placeholder="e.g. Westlands, Nairobi" />
+          </div>
+        </div>
+
+        <!-- STEP 4: Package -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-rocket-takeoff"></i> Choose Your Listing Package</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+
+            <div class="package-card selected" onclick="selectPackage(this)">
+              <span class="package-badge" style="background:var(--surface-2);color:var(--text-muted);">Basic</span>
+              <div class="package-price">Free</div>
+              <div class="package-name">Private Seller</div>
+              <div class="package-features">
+                <div class="package-feature"><i class="bi bi-check-lg"></i> 1 listing</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Up to 8 photos</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> 30 day listing</div>
+                <div class="package-feature" style="color:var(--border);"><i class="bi bi-x-lg" style="color:var(--border);"></i> Featured badge</div>
+                <div class="package-feature" style="color:var(--border);"><i class="bi bi-x-lg" style="color:var(--border);"></i> Priority search</div>
+              </div>
+            </div>
+
+            <div class="package-card" onclick="selectPackage(this)" style="position:relative;">
+              <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--primary);color:white;font-size:10px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap;">MOST POPULAR</div>
+              <span class="package-badge" style="background:rgba(232,65,10,.12);color:var(--primary);">Standard</span>
+              <div class="package-price">KES 1,500</div>
+              <div class="package-name">Featured Listing</div>
+              <div class="package-features">
+                <div class="package-feature"><i class="bi bi-check-lg"></i> 3 listings</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Up to 20 photos</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> 60 day listing</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Featured badge</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> WhatsApp button</div>
+              </div>
+            </div>
+
+            <div class="package-card" onclick="selectPackage(this)">
+              <span class="package-badge" style="background:rgba(10,22,40,.08);color:var(--secondary);">Dealer Pro</span>
+              <div class="package-price">KES 8,000</div>
+              <div class="package-name">Dealer Package / mo</div>
+              <div class="package-features">
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Unlimited listings</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Dealer profile page</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Priority search rank</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Analytics dashboard</div>
+                <div class="package-feature"><i class="bi bi-check-lg"></i> Verified badge</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- STEP 5: Contact & Submit -->
+        <div class="form-section">
+          <div class="form-section-title"><i class="bi bi-person-circle"></i> Your Contact Details</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" class="form-control-cc" placeholder="Your full name" />
+            </div>
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" class="form-control-cc" placeholder="+254 700 000 000" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-control-cc" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label>Preferred Contact Method</label>
+              <select class="form-control-cc">
+                <option>Phone &amp; WhatsApp</option>
+                <option>Phone only</option>
+                <option>Email only</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top:4px;margin-bottom:20px;">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text-muted);cursor:pointer;line-height:1.5;">
+              <input type="checkbox" style="accent-color:var(--primary);margin-top:3px;flex-shrink:0;" />
+              I confirm this vehicle is mine to sell and all information provided is accurate. I agree to CarCat's <a href="#" style="color:var(--primary);">Terms of Service</a> and <a href="#" style="color:var(--primary);">Listing Policy</a>.
+            </label>
+          </div>
+          <button class="btn btn-primary btn-lg w-100" style="justify-content:center;border:none;font-size:16px;">
+            <i class="bi bi-rocket-takeoff-fill"></i> &nbsp;Publish My Listing
+          </button>
+          <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:12px;">Your listing will be reviewed and live within 1 hour.</p>
+        </div>
+
+      </div><!-- /form -->
+
+      <!-- SIDEBAR -->
+      <div style="position:sticky;top:calc(var(--nav-h) + 34px + 20px);">
+
+        <!-- Tips -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;"><i class="bi bi-lightbulb" style="color:var(--primary);margin-right:6px;"></i> Seller Tips</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,65,10,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:12px;flex-shrink:0;"><i class="bi bi-camera"></i></div>
+              <div><p style="font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:2px;">Add great photos</p><p style="font-size:12px;color:var(--text-muted);">Good lighting, clean car, multiple angles.</p></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,65,10,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:12px;flex-shrink:0;"><i class="bi bi-tag"></i></div>
+              <div><p style="font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:2px;">Price it right</p><p style="font-size:12px;color:var(--text-muted);">Check similar listings before setting your price.</p></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,65,10,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:12px;flex-shrink:0;"><i class="bi bi-file-text"></i></div>
+              <div><p style="font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:2px;">Be detailed</p><p style="font-size:12px;color:var(--text-muted);">Full service history and accurate mileage builds trust.</p></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:10px;">
+              <div style="width:28px;height:28px;border-radius:50%;background:rgba(232,65,10,.1);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:12px;flex-shrink:0;"><i class="bi bi-whatsapp"></i></div>
+              <div><p style="font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:2px;">Respond quickly</p><p style="font-size:12px;color:var(--text-muted);">Fast responses get 2x more enquiries.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Free valuation -->
+        <div style="background:var(--secondary);border-radius:var(--radius-lg);padding:22px;">
+          <i class="bi bi-graph-up-arrow" style="font-size:26px;color:var(--primary);display:block;margin-bottom:12px;"></i>
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:white;margin-bottom:8px;">Not Sure What to Charge?</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px;">Get a free instant valuation based on current Kenya market data.</p>
+          <button class="btn btn-primary w-100" style="justify-content:center;border:none;">Get Free Valuation</button>
+        </div>
+
+        <!-- Safety tips -->
+        <div style="background:#fff8f5;border:1.5px solid rgba(232,65,10,.2);border-radius:var(--radius-lg);padding:20px;margin-top:16px;">
+          <h4 style="font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--secondary);margin-bottom:12px;"><i class="bi bi-shield-check" style="color:#10b981;margin-right:6px;"></i> Safety Reminders</h4>
+          <ul style="display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:12.5px;color:var(--text-muted);display:flex;align-items:flex-start;gap:6px;"><i class="bi bi-dot" style="color:var(--primary);font-size:20px;flex-shrink:0;margin-top:-3px;"></i>Only meet buyers in public places</li>
+            <li style="font-size:12.5px;color:var(--text-muted);display:flex;align-items:flex-start;gap:6px;"><i class="bi bi-dot" style="color:var(--primary);font-size:20px;flex-shrink:0;margin-top:-3px;"></i>Verify payment before handing over keys</li>
+            <li style="font-size:12.5px;color:var(--text-muted);display:flex;align-items:flex-start;gap:6px;"><i class="bi bi-dot" style="color:var(--primary);font-size:20px;flex-shrink:0;margin-top:-3px;"></i>Use a proper sale agreement</li>
+            <li style="font-size:12.5px;color:var(--text-muted);display:flex;align-items:flex-start;gap:6px;"><i class="bi bi-dot" style="color:var(--primary);font-size:20px;flex-shrink:0;margin-top:-3px;"></i>Never share your ID or PIN with buyers</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;"><div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>Car<span style="color:var(--primary)">Cat</span></a>
+        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
+        <div class="footer-socials"><a class="social-btn" href="#"><i class="bi bi-facebook"></i></a><a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a><a class="social-btn" href="#"><i class="bi bi-instagram"></i></a><a class="social-btn" href="#"><i class="bi bi-youtube"></i></a></div>
+      </div>
+      <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs</a></li><li><a href="listing.html">Pickups</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Car Finance</a></li><li><a href="#">Insurance</a></li><li><a href="#">Valuation</a></li><li><a href="#">History Check</a></li></ul></div>
+      <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Car</a></li><li><a href="#">Dealer Packages</a></li><li><a href="#">Dashboard</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="articles.html">News</a></li><li><a href="#">Contact</a></li><li><a href="#">Help Centre</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Cookie Settings</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+function selectPackage(card) {
+  document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+}
+</script>
+</body>
+</html>

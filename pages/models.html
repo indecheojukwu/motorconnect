@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse by Model — CarCat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .make-section { margin-bottom: 52px; }
+    .make-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1.5px solid var(--border); }
+    .make-logo { width: 48px; height: 48px; border-radius: var(--radius); background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; font-family: var(--font-display); color: var(--secondary); border: 1.5px solid var(--border); }
+    .make-name { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--secondary); }
+    .make-count { font-size: 13px; color: var(--text-muted); }
+    .model-grid-dense { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .model-card-dense { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 12px 14px; text-align: center; cursor: pointer; transition: all var(--transition); }
+    .model-card-dense:hover { border-color: var(--primary); background: rgba(232,65,10,.03); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .model-card-dense .emoji { font-size: 32px; margin-bottom: 8px; display: block; }
+    .model-card-dense .name { font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--secondary); margin-bottom: 3px; }
+    .model-card-dense .count { font-size: 11px; color: var(--text-muted); }
+    .alpha-nav { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 32px; }
+    .alpha-btn { width: 34px; height: 34px; border-radius: var(--radius); border: 1.5px solid var(--border); background: transparent; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all var(--transition); font-family: var(--font-body); display: flex; align-items: center; justify-content: center; }
+    .alpha-btn:hover, .alpha-btn.active { background: var(--primary); border-color: var(--primary); color: white; }
+    .price-guide-card { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; transition: all var(--transition); cursor: pointer; }
+    .price-guide-card:hover { border-color: var(--primary); box-shadow: var(--shadow-sm); }
+    .price-guide-card .model-n { font-size: 14px; font-weight: 600; color: var(--secondary); }
+    .price-guide-card .price-range { font-size: 13px; color: var(--primary); font-weight: 600; }
+    .price-guide-card .listings-c { font-size: 12px; color: var(--text-muted); }
+    @media (max-width: 900px) { .model-grid-dense { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { .model-grid-dense { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#">hello@carcat.co.ke</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="sell.html">Sell a Car</a>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="../index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="listing.html" class="nav-link">Cars</a></li>
+        <li class="nav-item"><a href="dealers.html" class="nav-link">Dealers</a></li>
+        <li class="nav-item"><a href="models.html" class="nav-link active">Models</a></li>
+        <li class="nav-item"><a href="articles.html" class="nav-link">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+        <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="dealers.html" class="mobile-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+  <a href="models.html" class="mobile-nav-link">Models <i class="bi bi-chevron-right"></i></a>
+</div>
+
+<!-- PAGE HERO -->
+<div style="background:var(--secondary);padding:calc(var(--nav-h) + 34px + 36px) 0 44px;">
+  <div class="container">
+    <div class="listing-breadcrumb" style="margin-bottom:12px;">
+      <a href="../index.html" style="color:rgba(255,255,255,.5);">Home</a>
+      <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+      <span style="color:rgba(255,255,255,.8);">Browse by Model</span>
+    </div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:800;color:white;margin-bottom:10px;">Car <span style="color:var(--primary);">Models</span> &amp; Prices</h1>
+    <p style="font-size:15px;color:rgba(255,255,255,.6);max-width:540px;margin-bottom:28px;">Browse every make and model available in Kenya. See current market prices and listings count for each vehicle.</p>
+    <div style="display:flex;gap:10px;max-width:500px;">
+      <input type="text" placeholder="Search make or model…" class="field-input" style="flex:1;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:white;" />
+      <button class="search-btn" style="height:48px;"><i class="bi bi-search"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div style="padding:48px 0 80px;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;">
+
+      <!-- MODEL SECTIONS -->
+      <div>
+        <!-- Alpha nav -->
+        <div class="alpha-nav">
+          <button class="alpha-btn active" onclick="filterAlpha('all',this)">All</button>
+          <button class="alpha-btn" onclick="filterAlpha('B',this)">B</button>
+          <button class="alpha-btn" onclick="filterAlpha('H',this)">H</button>
+          <button class="alpha-btn" onclick="filterAlpha('L',this)">L</button>
+          <button class="alpha-btn" onclick="filterAlpha('M',this)">M</button>
+          <button class="alpha-btn" onclick="filterAlpha('N',this)">N</button>
+          <button class="alpha-btn" onclick="filterAlpha('S',this)">S</button>
+          <button class="alpha-btn" onclick="filterAlpha('T',this)">T</button>
+          <button class="alpha-btn" onclick="filterAlpha('V',this)">V</button>
+        </div>
+
+        <!-- TOYOTA -->
+        <div class="make-section" data-make="T">
+          <div class="make-header">
+            <div class="make-logo">T</div>
+            <div>
+              <div class="make-name">Toyota</div>
+              <div class="make-count">48 listings across 12 models</div>
+            </div>
+            <a href="listing.html" class="btn btn-ghost btn-sm ms-auto">View All <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="model-grid-dense">
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Land Cruiser Prado</div><div class="count">4 vehicles · from KES 5.5M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🛻</span><div class="name">Hilux Double Cab</div><div class="count">3 vehicles · from KES 3.8M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚐</span><div class="name">Hiace Van</div><div class="count">2 vehicles · from KES 2.1M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Hilux Surf</div><div class="count">1 vehicle · from KES 1.6M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">Corolla</div><div class="count">6 vehicles · from KES 900K</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">RAV4</div><div class="count">5 vehicles · from KES 2.2M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚐</span><div class="name">Noah</div><div class="count">4 vehicles · from KES 1.4M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Axio</div><div class="count">8 vehicles · from KES 750K</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">Fielder</div><div class="count">7 vehicles · from KES 800K</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Land Cruiser</div><div class="count">2 vehicles · from KES 9M</div></a>
+          </div>
+        </div>
+
+        <!-- SUBARU -->
+        <div class="make-section" data-make="S">
+          <div class="make-header">
+            <div class="make-logo">S</div>
+            <div>
+              <div class="make-name">Subaru</div>
+              <div class="make-count">21 listings across 6 models</div>
+            </div>
+            <a href="listing.html" class="btn btn-ghost btn-sm ms-auto">View All <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="model-grid-dense">
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Forester</div><div class="count">3 vehicles · from KES 1.4M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Levorg</div><div class="count">1 vehicle · from KES 1.4M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🏎️</span><div class="name">Impreza WRX</div><div class="count">4 vehicles · from KES 1.8M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Legacy</div><div class="count">5 vehicles · from KES 1.1M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Outback</div><div class="count">3 vehicles · from KES 2.0M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">XV Crosstrek</div><div class="count">5 vehicles · from KES 1.7M</div></a>
+          </div>
+        </div>
+
+        <!-- MAZDA -->
+        <div class="make-section" data-make="M">
+          <div class="make-header">
+            <div class="make-logo">M</div>
+            <div>
+              <div class="make-name">Mazda</div>
+              <div class="make-count">18 listings across 5 models</div>
+            </div>
+            <a href="listing.html" class="btn btn-ghost btn-sm ms-auto">View All <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="model-grid-dense">
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Axela</div><div class="count">2 vehicles · from KES 1.4M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">CX-8</div><div class="count">2 vehicles · from KES 3.7M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">CX-5</div><div class="count">5 vehicles · from KES 2.2M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">Demio</div><div class="count">6 vehicles · from KES 700K</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">Atenza</div><div class="count">3 vehicles · from KES 1.9M</div></a>
+          </div>
+        </div>
+
+        <!-- MERCEDES -->
+        <div class="make-section" data-make="M">
+          <div class="make-header">
+            <div class="make-logo">MB</div>
+            <div>
+              <div class="make-name">Mercedes-Benz</div>
+              <div class="make-count">12 listings across 5 models</div>
+            </div>
+            <a href="listing.html" class="btn btn-ghost btn-sm ms-auto">View All <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="model-grid-dense">
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚗</span><div class="name">C-Class</div><div class="count">1 vehicle · from KES 1.25M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">GLE AMG</div><div class="count">1 vehicle · from KES 12.2M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚘</span><div class="name">E-Class</div><div class="count">3 vehicles · from KES 2.8M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🏎️</span><div class="name">G-Wagon</div><div class="count">2 vehicles · from KES 18M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">GLC</div><div class="count">5 vehicles · from KES 4.5M</div></a>
+          </div>
+        </div>
+
+        <!-- LAND ROVER -->
+        <div class="make-section" data-make="L">
+          <div class="make-header">
+            <div class="make-logo">LR</div>
+            <div>
+              <div class="make-name">Land Rover</div>
+              <div class="make-count">7 listings across 3 models</div>
+            </div>
+            <a href="listing.html" class="btn btn-ghost btn-sm ms-auto">View All <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="model-grid-dense">
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🏎️</span><div class="name">Range Rover Vogue</div><div class="count">1 vehicle · from KES 26.5M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Discovery Sport</div><div class="count">4 vehicles · from KES 5.2M</div></a>
+            <a href="listing.html" class="model-card-dense"><span class="emoji">🚙</span><div class="name">Defender</div><div class="count">2 vehicles · from KES 11M</div></a>
+          </div>
+        </div>
+
+      </div><!-- /model sections -->
+
+      <!-- SIDEBAR -->
+      <div style="position:sticky;top:calc(var(--nav-h) + 34px + 20px);">
+        <!-- Price guide -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;"><i class="bi bi-graph-up" style="color:var(--primary);margin-right:6px;"></i> Price Guide</h4>
+          <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">Current Kenya market prices (KES)</p>
+          <div class="price-guide-card"><div><div class="model-n">Toyota Land Cruiser Prado</div><div class="listings-c">4 listings</div></div><div class="price-range">5.5M – 12M</div></div>
+          <div class="price-guide-card"><div><div class="model-n">Subaru Forester</div><div class="listings-c">3 listings</div></div><div class="price-range">1.4M – 2.8M</div></div>
+          <div class="price-guide-card"><div><div class="model-n">Toyota Hilux DC</div><div class="listings-c">3 listings</div></div><div class="price-range">3.8M – 5.5M</div></div>
+          <div class="price-guide-card"><div><div class="model-n">Mazda CX-5</div><div class="listings-c">5 listings</div></div><div class="price-range">2.2M – 3.5M</div></div>
+          <div class="price-guide-card"><div><div class="model-n">Toyota Corolla</div><div class="listings-c">6 listings</div></div><div class="price-range">900K – 1.8M</div></div>
+          <a href="listing.html" class="btn btn-ghost btn-sm w-100 mt-3" style="justify-content:center;">Full Price List <i class="bi bi-arrow-right"></i></a>
+        </div>
+
+        <!-- Popular makes quick links -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;"><i class="bi bi-grid" style="color:var(--primary);margin-right:6px;"></i> Popular Makes</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <a href="listing.html" class="shortcut-tag">Toyota</a>
+            <a href="listing.html" class="shortcut-tag">Subaru</a>
+            <a href="listing.html" class="shortcut-tag">Mazda</a>
+            <a href="listing.html" class="shortcut-tag">Mercedes</a>
+            <a href="listing.html" class="shortcut-tag">BMW</a>
+            <a href="listing.html" class="shortcut-tag">Nissan</a>
+            <a href="listing.html" class="shortcut-tag">Honda</a>
+            <a href="listing.html" class="shortcut-tag">Land Rover</a>
+            <a href="listing.html" class="shortcut-tag">Mitsubishi</a>
+            <a href="listing.html" class="shortcut-tag">Volkswagen</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;"><div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>Car<span style="color:var(--primary)">Cat</span></a>
+        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
+        <div class="footer-socials"><a class="social-btn" href="#"><i class="bi bi-facebook"></i></a><a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a><a class="social-btn" href="#"><i class="bi bi-instagram"></i></a></div>
+      </div>
+      <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Finance</a></li><li><a href="#">Insurance</a></li></ul></div>
+      <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Car</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About</a></li><li><a href="articles.html">News</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+function filterAlpha(letter, btn) {
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.make-section').forEach(sec => {
+    sec.style.display = (letter === 'all' || sec.dataset.make === letter) ? 'block' : 'none';
+  });
+}
+</script>
+</body>
+</html>

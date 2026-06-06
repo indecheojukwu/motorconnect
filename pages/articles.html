@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News &amp; Guides — CarCat</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .article-hero-card {
+      display: grid; grid-template-columns: 1fr 1fr; border-radius: var(--radius-xl);
+      overflow: hidden; border: 1.5px solid var(--border); margin-bottom: 40px;
+      background: var(--white); box-shadow: var(--shadow-md); cursor: pointer;
+      transition: all var(--transition);
+    }
+    .article-hero-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-3px); }
+    .article-hero-img { height: 380px; overflow: hidden; }
+    .article-hero-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+    .article-hero-card:hover .article-hero-img img { transform: scale(1.04); }
+    .article-hero-body { padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; }
+    .article-hero-body .article-tag { margin-bottom: 12px; font-size: 12px; }
+    .article-hero-body .article-title { font-family: var(--font-display); font-size: 24px; font-weight: 800; line-height: 1.3; color: var(--secondary); margin-bottom: 14px; }
+    .article-hero-body .article-excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .sidebar-article { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: all var(--transition); }
+    .sidebar-article:last-child { border-bottom: none; }
+    .sidebar-article:hover .sa-title { color: var(--primary); }
+    .sa-img { width: 72px; height: 56px; border-radius: var(--radius); overflow: hidden; flex-shrink: 0; background: var(--surface-2); }
+    .sa-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sa-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px; }
+    .sa-title { font-size: 13px; font-weight: 600; color: var(--secondary); line-height: 1.4; }
+    .sa-date { font-size: 11px; color: var(--text-light); margin-top: 4px; }
+    .category-pill { font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 30px; border: 1.5px solid var(--border); background: transparent; color: var(--text-muted); cursor: pointer; transition: all var(--transition); font-family: var(--font-body); }
+    .category-pill.active { background: var(--secondary); color: white; border-color: var(--secondary); }
+    .category-pill:hover:not(.active) { border-color: var(--secondary); color: var(--secondary); }
+    @media (max-width: 768px) {
+      .article-hero-card { grid-template-columns: 1fr; }
+      .article-hero-img { height: 220px; }
+      .article-hero-body { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#">hello@carcat.co.ke</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="sell.html">Sell a Car</a>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="../index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item"><a href="listing.html" class="nav-link">Cars</a></li>
+        <li class="nav-item"><a href="dealers.html" class="nav-link">Dealers</a></li>
+        <li class="nav-item"><a href="models.html" class="nav-link">Models</a></li>
+        <li class="nav-item"><a href="articles.html" class="nav-link active">News</a></li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+        <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="mobile-nav" id="mobileNav">
+  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="articles.html" class="mobile-nav-link">News &amp; Guides <i class="bi bi-chevron-right"></i></a>
+</div>
+
+<!-- PAGE HERO -->
+<div style="background:var(--secondary);padding:calc(var(--nav-h) + 34px + 36px) 0 44px;">
+  <div class="container">
+    <div class="listing-breadcrumb" style="margin-bottom:12px;">
+      <a href="../index.html" style="color:rgba(255,255,255,.5);">Home</a>
+      <span class="sep" style="color:rgba(255,255,255,.2);">/</span>
+      <span style="color:rgba(255,255,255,.8);">News &amp; Guides</span>
+    </div>
+    <h1 style="font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:800;color:white;margin-bottom:10px;">Car <span style="color:var(--primary);">News</span> &amp; Buying Guides</h1>
+    <p style="font-size:15px;color:rgba(255,255,255,.6);max-width:480px;">Expert advice, reviews, market updates and everything you need to be a smarter car buyer in Kenya.</p>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div style="padding:48px 0 80px;background:var(--surface);">
+  <div class="container">
+
+    <!-- Category pills -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;">
+      <button class="category-pill active">All</button>
+      <button class="category-pill">Buying Guides</button>
+      <button class="category-pill">Reviews</button>
+      <button class="category-pill">Finance</button>
+      <button class="category-pill">Import Tips</button>
+      <button class="category-pill">Market News</button>
+      <button class="category-pill">Maintenance</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:32px;align-items:start;">
+
+      <!-- ARTICLES -->
+      <div>
+        <!-- Featured article -->
+        <div class="article-hero-card">
+          <div class="article-hero-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Import guide" loading="lazy" />
+          </div>
+          <div class="article-hero-body">
+            <span class="article-tag">Buying Guide</span>
+            <h2 class="article-title">How to Import a Car from Japan to Kenya in 2025</h2>
+            <p class="article-excerpt">Everything you need to know: KRA duties, KEBS inspection, IDF registration, duty calculators and the step-by-step import process — explained simply.</p>
+            <div class="article-meta">
+              <div class="article-author"><div class="author-ava">JM</div><div><strong style="color:var(--secondary);font-size:13px;">James Mwangi</strong><div style="font-size:11px;color:var(--text-light);">Senior Editor</div></div></div>
+              <span>June 2, 2025 · 8 min read</span>
+            </div>
+            <a href="#" class="btn btn-primary btn-sm" style="margin-top:16px;align-self:flex-start;">Read Article <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <!-- Grid articles -->
+        <div class="articles-grid" style="margin-bottom:28px;">
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Review</span>
+              <h3 class="article-title">Toyota Hilux vs Ford Ranger: Which Wins in Kenya?</h3>
+              <p class="article-excerpt">A detailed head-to-head comparison on off-road capability, running costs and resale value.</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">AK</div><span>Aisha Kamau</span></div><span>May 28</span></div>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1591293836027-e05b48473b67?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Finance</span>
+              <h3 class="article-title">Bank vs SACCO Car Loans: What's the Better Deal?</h3>
+              <p class="article-excerpt">Compare interest rates, eligibility and total cost of car financing across Kenya's top lenders.</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">RO</div><span>Rita Omondi</span></div><span>May 20</span></div>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Maintenance</span>
+              <h3 class="article-title">5 Things to Check Before Buying a Used Car in Nairobi</h3>
+              <p class="article-excerpt">Avoid costly mistakes with this practical pre-purchase inspection checklist for Kenyan buyers.</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">PO</div><span>Peter Otieno</span></div><span>May 14</span></div>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Market News</span>
+              <h3 class="article-title">Kenyan Used Car Prices Q2 2025: What's Gone Up and Down</h3>
+              <p class="article-excerpt">Our quarterly market analysis shows which models gained value and which are now better deals.</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">JM</div><span>James Mwangi</span></div><span>May 8</span></div>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Import Tips</span>
+              <h3 class="article-title">Buying from Japan vs UK vs UAE: Pros and Cons</h3>
+              <p class="article-excerpt">Which import source gives you the best quality, variety and value for Kenya's roads?</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">AK</div><span>Aisha Kamau</span></div><span>April 30</span></div>
+            </div>
+          </div>
+          <div class="article-card">
+            <div class="article-img"><img src="https://images.unsplash.com/photo-1609521263047-f8f205293f24?w=600&q=80" alt="" loading="lazy"/></div>
+            <div class="article-body">
+              <span class="article-tag">Buying Guide</span>
+              <h3 class="article-title">Best Family SUVs Under KES 3 Million in Kenya 2025</h3>
+              <p class="article-excerpt">Our top picks for spacious, reliable and affordable family SUVs available right now.</p>
+              <div class="article-meta"><div class="article-author"><div class="author-ava">RO</div><span>Rita Omondi</span></div><span>April 22</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <button class="page-btn"><i class="bi bi-chevron-left"></i></button>
+          <button class="page-btn active">1</button>
+          <button class="page-btn">2</button>
+          <button class="page-btn">3</button>
+          <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div style="position:sticky;top:calc(var(--nav-h) + 34px + 20px);">
+
+        <!-- Popular this week -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;"><i class="bi bi-fire" style="color:var(--primary);margin-right:6px;"></i> Popular This Week</h4>
+          <div class="sidebar-article">
+            <div class="sa-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=60" alt="" loading="lazy"/></div>
+            <div><div class="sa-tag">Guide</div><div class="sa-title">How to Import a Car from Japan to Kenya</div><div class="sa-date">June 2, 2025</div></div>
+          </div>
+          <div class="sidebar-article">
+            <div class="sa-img"><img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=150&q=60" alt="" loading="lazy"/></div>
+            <div><div class="sa-tag">Review</div><div class="sa-title">Toyota Hilux vs Ford Ranger</div><div class="sa-date">May 28, 2025</div></div>
+          </div>
+          <div class="sidebar-article">
+            <div class="sa-img"><img src="https://images.unsplash.com/photo-1591293836027-e05b48473b67?w=150&q=60" alt="" loading="lazy"/></div>
+            <div><div class="sa-tag">Finance</div><div class="sa-title">Bank vs SACCO Car Loans</div><div class="sa-date">May 20, 2025</div></div>
+          </div>
+          <div class="sidebar-article">
+            <div class="sa-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=150&q=60" alt="" loading="lazy"/></div>
+            <div><div class="sa-tag">Guide</div><div class="sa-title">5 Things to Check Before Buying a Used Car</div><div class="sa-date">May 14, 2025</div></div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div style="background:var(--secondary);border-radius:var(--radius-lg);padding:24px;">
+          <i class="bi bi-envelope-paper" style="font-size:28px;color:var(--primary);display:block;margin-bottom:12px;"></i>
+          <h4 style="font-family:var(--font-display);font-size:16px;font-weight:700;color:white;margin-bottom:8px;">Get Car Deals in Your Inbox</h4>
+          <p style="font-size:13px;color:rgba(255,255,255,.6);margin-bottom:16px;">Weekly market updates, import tips and the best deals — straight to you.</p>
+          <input type="email" placeholder="your@email.com" class="rfp-field" style="width:100%;display:block;margin-bottom:10px;" />
+          <button class="btn btn-primary w-100" style="justify-content:center;border:none;">Subscribe</button>
+          <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:10px;text-align:center;">No spam. Unsubscribe anytime.</p>
+        </div>
+
+        <!-- Topics -->
+        <div style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-top:16px;">
+          <h4 style="font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--secondary);margin-bottom:14px;">Browse Topics</h4>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="shortcut-tag">Buying Guides</span>
+            <span class="shortcut-tag">Reviews</span>
+            <span class="shortcut-tag">Finance</span>
+            <span class="shortcut-tag">Import Tips</span>
+            <span class="shortcut-tag">Market Prices</span>
+            <span class="shortcut-tag">Maintenance</span>
+            <span class="shortcut-tag">Electric Cars</span>
+            <span class="shortcut-tag">SUVs</span>
+            <span class="shortcut-tag">Pickups</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;"><div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>Car<span style="color:var(--primary)">Cat</span></a>
+        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
+        <div class="footer-socials"><a class="social-btn" href="#"><i class="bi bi-facebook"></i></a><a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a><a class="social-btn" href="#"><i class="bi bi-instagram"></i></a><a class="social-btn" href="#"><i class="bi bi-youtube"></i></a></div>
+      </div>
+      <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs</a></li><li><a href="listing.html">Pickups</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Finance</a></li><li><a href="#">Insurance</a></li><li><a href="#">Valuation</a></li><li><a href="#">History Check</a></li></ul></div>
+      <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Car</a></li><li><a href="#">Packages</a></li><li><a href="#">Dashboard</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="articles.html">News</a></li><li><a href="#">Contact</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Cookie Settings</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+document.querySelectorAll('.category-pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.category-pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

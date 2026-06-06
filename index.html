@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarCat — Find Your Perfect Car</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<div class="navbar-wrap">
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar-links">
+        <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
+        <a href="#"><i class="bi bi-envelope"></i> hello@carcat.co.ke</a>
+        <a href="#"><i class="bi bi-geo-alt"></i> Nairobi, Kenya</a>
+      </div>
+      <div class="top-bar-links">
+        <a href="pages/sell.html">Sell a Car</a>
+        <a href="#">Finance Calculator</a>
+        <a href="#">History Check</a>
+        <a href="#">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <a href="index.html">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span>Cat</span>
+        </a>
+      </div>
+
+      <ul class="navbar-nav">
+        <!-- Cars dropdown -->
+        <li class="nav-item">
+          <a href="pages/listing.html" class="nav-link">Cars <i class="bi bi-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="pages/listing.html?type=new"><i class="bi bi-stars"></i> New Cars</a>
+            <a href="pages/listing.html?type=used"><i class="bi bi-car-front"></i> Used Cars</a>
+            <a href="pages/listing.html?type=electric"><i class="bi bi-lightning-charge"></i> Electric Cars</a>
+            <a href="pages/listing.html?type=suv"><i class="bi bi-truck"></i> SUVs &amp; 4x4s</a>
+            <a href="pages/listing.html?type=classic"><i class="bi bi-award"></i> Classic Cars</a>
+            <a href="pages/listing.html?type=pickup"><i class="bi bi-truck-front"></i> Pickups</a>
+          </div>
+        </li>
+        <!-- Browse By dropdown -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">Browse By <i class="bi bi-chevron-down"></i></a>
+          <div class="nav-mega">
+            <a href="#" class="mega-item"><i class="bi bi-tag"></i> Make</a>
+            <a href="pages/models.html" class="mega-item"><i class="bi bi-grid"></i> Model</a>
+            <a href="#" class="mega-item"><i class="bi bi-currency-dollar"></i> Price Range</a>
+            <a href="#" class="mega-item"><i class="bi bi-geo-alt"></i> Location</a>
+            <a href="#" class="mega-item"><i class="bi bi-fuel-pump"></i> Fuel Type</a>
+            <a href="#" class="mega-item"><i class="bi bi-speedometer2"></i> Mileage</a>
+            <a href="#" class="mega-item"><i class="bi bi-calendar3"></i> Year</a>
+            <a href="#" class="mega-item"><i class="bi bi-gear"></i> Transmission</a>
+            <a href="#" class="mega-item"><i class="bi bi-palette"></i> Colour</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="pages/dealers.html" class="nav-link">Dealers</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">Finance <i class="bi bi-chevron-down"></i></a>
+          <div class="nav-dropdown">
+            <a href="#"><i class="bi bi-calculator"></i> Finance Calculator</a>
+            <a href="#"><i class="bi bi-bank"></i> Car Loans</a>
+            <a href="#"><i class="bi bi-shield-check"></i> Car Insurance</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a href="pages/articles.html" class="nav-link">Guides &amp; News</a>
+        </li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button class="nav-icon-btn" title="Saved"><i class="bi bi-heart"></i></button>
+        <button class="nav-icon-btn" title="Compare"><i class="bi bi-arrow-left-right"></i></button>
+        <a href="pages/sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
+        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
+  <a href="pages/listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
+  <a href="pages/dealers.html" class="mobile-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+  <a href="pages/models.html" class="mobile-nav-link">Models <i class="bi bi-chevron-right"></i></a>
+  <a href="pages/articles.html" class="mobile-nav-link">News &amp; Guides <i class="bi bi-chevron-right"></i></a>
+  <a href="pages/sell.html" class="mobile-nav-link">Sell a Car <i class="bi bi-chevron-right"></i></a>
+  <div class="mt-4">
+    <a href="pages/sell.html" class="btn btn-primary w-100">+ List a Car</a>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Kenya's #1 Car Marketplace</div>
+        <h1>Find Your <span>Perfect</span><br>Car Today</h1>
+        <p>Search thousands of new and used cars from trusted dealers and private sellers across Kenya.</p>
+      </div>
+
+      <!-- Search Card -->
+      <div class="search-card">
+        <div class="search-tabs">
+          <button class="search-tab active">All Cars</button>
+          <button class="search-tab">New Cars</button>
+          <button class="search-tab">Used Cars</button>
+          <button class="search-tab">Electric</button>
+          <button class="search-tab">Pickups</button>
+        </div>
+        <div class="search-fields">
+          <div class="field-group">
+            <label class="field-label">Make</label>
+            <select class="field-select">
+              <option value="">Any Make</option>
+              <option>Toyota</option>
+              <option>Mazda</option>
+              <option>Subaru</option>
+              <option>Mercedes-Benz</option>
+              <option>BMW</option>
+              <option>Land Rover</option>
+              <option>Nissan</option>
+              <option>Honda</option>
+              <option>Mitsubishi</option>
+              <option>Volkswagen</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Model</label>
+            <select class="field-select">
+              <option value="">Any Model</option>
+              <option>Land Cruiser</option>
+              <option>Axela</option>
+              <option>Forester</option>
+              <option>Hilux</option>
+              <option>Prado</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Max Price (KES)</label>
+            <select class="field-select">
+              <option value="">Any Price</option>
+              <option>500,000</option>
+              <option>1,000,000</option>
+              <option>2,000,000</option>
+              <option>3,000,000</option>
+              <option>5,000,000</option>
+              <option>10,000,000+</option>
+            </select>
+          </div>
+          <button class="search-btn" onclick="window.location='pages/listing.html'">
+            <i class="bi bi-search"></i> Search
+          </button>
+        </div>
+        <div class="search-shortcuts">
+          <span class="search-shortcut-label">Popular:</span>
+          <span class="shortcut-tag">Toyota Hilux</span>
+          <span class="shortcut-tag">Subaru Forester</span>
+          <span class="shortcut-tag">Mazda Axela</span>
+          <span class="shortcut-tag">Land Cruiser Prado</span>
+          <span class="shortcut-tag">Under KES 1M</span>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">12,400+</div><div class="lbl">Active Listings</div></div>
+        <div class="hero-stat"><div class="num">340+</div><div class="lbl">Trusted Dealers</div></div>
+        <div class="hero-stat"><div class="num">98%</div><div class="lbl">Satisfaction Rate</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED LISTINGS ===================== -->
+<section class="listings-section section-gap" id="featured">
+  <div class="container">
+    <div class="listings-header">
+      <div>
+        <span class="section-label">Handpicked for You</span>
+        <h2 class="section-title">Featured <span>Listings</span></h2>
+      </div>
+      <a href="pages/listing.html" class="btn btn-ghost">View All Cars <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="listings-filter-tabs">
+      <button class="filter-tab active">All</button>
+      <button class="filter-tab">New</button>
+      <button class="filter-tab">Used</button>
+      <button class="filter-tab">SUV</button>
+      <button class="filter-tab">Sedan</button>
+      <button class="filter-tab">Pickup</button>
+      <button class="filter-tab">Electric</button>
+    </div>
+
+    <div class="vehicles-grid">
+
+      <!-- Card 1 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Toyota Land Cruiser Prado" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span><span class="badge-featured">Featured</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Toyota</div>
+          <div class="vehicle-name">Land Cruiser Prado TZG</div>
+          <div class="vehicle-price">KES 9,000,000 <small>/ KES 333k mo</small></div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2020</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 45,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+            <span class="spec-tag"><i class="bi bi-fuel-pump"></i> Diesel</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Mercedes-AMG GLE" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Mercedes-AMG</div>
+          <div class="vehicle-name">GLE 400D 4Matic SUV</div>
+          <div class="vehicle-price">KES 12,250,000</div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2019</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 62,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80" alt="Subaru Forester" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Subaru</div>
+          <div class="vehicle-name">Forester XT SUV</div>
+          <div class="vehicle-price">KES 2,450,000 <small>/ KES 91k mo</small></div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2017</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 78,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+            <span class="spec-tag"><i class="bi bi-fuel-pump"></i> Petrol</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=600&q=80" alt="Mazda Axela" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Mazda</div>
+          <div class="vehicle-name">Axela Sport Sedan</div>
+          <div class="vehicle-price">KES 1,680,000 <small>/ KES 62k mo</small></div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2016</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 91,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="Toyota Hilux" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Toyota</div>
+          <div class="vehicle-name">Hilux GD-6 4x4 Pickup</div>
+          <div class="vehicle-price">KES 4,800,000</div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2021</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 38,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Manual</span>
+            <span class="spec-tag"><i class="bi bi-fuel-pump"></i> Diesel</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1608023136037-626dad6c2b44?w=600&q=80" alt="Range Rover" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span><span class="badge-featured">Featured</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Land Rover</div>
+          <div class="vehicle-name">Range Rover Vogue 350D</div>
+          <div class="vehicle-price">KES 26,500,000</div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2022</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 18,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80" alt="Subaru Levorg" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-used">Used</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Subaru</div>
+          <div class="vehicle-name">Levorg Wagon 1.6T</div>
+          <div class="vehicle-price">KES 1,430,000 <small>/ KES 53k mo</small></div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2014</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 110,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> CVT</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="vehicle-card" onclick="window.location='pages/detail.html'">
+        <div class="vehicle-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&q=80" alt="Mazda CX-8" loading="lazy" />
+          <div class="vehicle-badges"><span class="badge-new">New</span></div>
+          <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
+        </div>
+        <div class="vehicle-body">
+          <div class="vehicle-make">Mazda</div>
+          <div class="vehicle-name">CX-8 XDL AWD SUV</div>
+          <div class="vehicle-price">KES 3,700,000 <small>/ KES 137k mo</small></div>
+          <div class="vehicle-specs">
+            <span class="spec-tag"><i class="bi bi-calendar3"></i> 2019</span>
+            <span class="spec-tag"><i class="bi bi-speedometer2"></i> 22,000 km</span>
+            <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
+            <span class="spec-tag"><i class="bi bi-fuel-pump"></i> Diesel</span>
+          </div>
+          <div class="vehicle-footer">
+            <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas Motors</span>
+            <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /vehicles-grid -->
+
+    <div class="text-center mt-8">
+      <a href="pages/listing.html" class="btn btn-outline btn-lg">Browse All Vehicles <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURED DEALERS ===================== -->
+<section class="dealers-section section-gap">
+  <div class="container">
+    <div class="listings-header">
+      <div>
+        <span class="section-label">Trusted Partners</span>
+        <h2 class="section-title">Featured <span>Dealers</span></h2>
+        <p class="section-subtitle">Connect with verified, top-rated dealerships across Kenya.</p>
+      </div>
+      <a href="pages/dealers.html" class="btn btn-ghost">All Dealers <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="dealers-grid">
+
+      <div class="dealer-card" onclick="window.location='pages/dealer-profile.html'">
+        <div class="dealer-avatar-placeholder">B</div>
+        <div class="dealer-name">Baypoa Motors</div>
+        <div class="dealer-location"><i class="bi bi-geo-alt-fill"></i> Westlands, Nairobi</div>
+        <div class="dealer-stats">
+          <div class="dealer-stat"><strong>23</strong>Listings</div>
+          <div class="dealer-stat"><strong>4.9</strong>Rating</div>
+          <div class="dealer-stat"><strong>8yr</strong>Member</div>
+        </div>
+        <div class="dealer-badge"><i class="bi bi-patch-check-fill"></i> Verified Dealer</div>
+      </div>
+
+      <div class="dealer-card" onclick="window.location='pages/dealer-profile.html'">
+        <div class="dealer-avatar-placeholder" style="background:linear-gradient(135deg,#0a2a5e,#1a4a8e)">M</div>
+        <div class="dealer-name">Brill Motors</div>
+        <div class="dealer-location"><i class="bi bi-geo-alt-fill"></i> Garden City, Nairobi</div>
+        <div class="dealer-stats">
+          <div class="dealer-stat"><strong>17</strong>Listings</div>
+          <div class="dealer-stat"><strong>4.8</strong>Rating</div>
+          <div class="dealer-stat"><strong>5yr</strong>Member</div>
+        </div>
+        <div class="dealer-badge"><i class="bi bi-patch-check-fill"></i> Verified Dealer</div>
+      </div>
+
+      <div class="dealer-card" onclick="window.location='pages/dealer-profile.html'">
+        <div class="dealer-avatar-placeholder" style="background:linear-gradient(135deg,#1a5e1a,#2a8e2a)">A</div>
+        <div class="dealer-name">Aquatadas Motors</div>
+        <div class="dealer-location"><i class="bi bi-geo-alt-fill"></i> Kiambu Rd, Nairobi</div>
+        <div class="dealer-stats">
+          <div class="dealer-stat"><strong>31</strong>Listings</div>
+          <div class="dealer-stat"><strong>4.7</strong>Rating</div>
+          <div class="dealer-stat"><strong>3yr</strong>Member</div>
+        </div>
+        <div class="dealer-badge"><i class="bi bi-patch-check-fill"></i> Verified Dealer</div>
+      </div>
+
+      <div class="dealer-card" onclick="window.location='pages/dealer-profile.html'">
+        <div class="dealer-avatar-placeholder" style="background:linear-gradient(135deg,#5e1a3a,#8e2a5a)">K</div>
+        <div class="dealer-name">Kilimani Auto Mart</div>
+        <div class="dealer-location"><i class="bi bi-geo-alt-fill"></i> Kilimani, Nairobi</div>
+        <div class="dealer-stats">
+          <div class="dealer-stat"><strong>45</strong>Listings</div>
+          <div class="dealer-stat"><strong>4.9</strong>Rating</div>
+          <div class="dealer-stat"><strong>12yr</strong>Member</div>
+        </div>
+        <div class="dealer-badge"><i class="bi bi-patch-check-fill"></i> Verified Dealer</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BROWSE BY MODEL ===================== -->
+<section class="models-section section-gap">
+  <div class="container">
+    <div class="listings-header">
+      <div>
+        <span class="section-label">Explore the Range</span>
+        <h2 class="section-title">Browse by <span>Model</span></h2>
+      </div>
+      <a href="pages/models.html" class="btn btn-ghost">View All Models <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="models-grid">
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚙</div>
+        <div class="model-name">Land Cruiser Prado</div>
+        <div class="model-count">4 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🛻</div>
+        <div class="model-name">Hilux Double Cab</div>
+        <div class="model-count">3 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚗</div>
+        <div class="model-name">Subaru Forester</div>
+        <div class="model-count">3 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚘</div>
+        <div class="model-name">Mazda Axela</div>
+        <div class="model-count">2 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚕</div>
+        <div class="model-name">Mazda CX-8</div>
+        <div class="model-count">2 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚐</div>
+        <div class="model-name">Toyota Hiace</div>
+        <div class="model-count">2 vehicles</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🏎️</div>
+        <div class="model-name">Range Rover Vogue</div>
+        <div class="model-count">1 vehicle</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚙</div>
+        <div class="model-name">Mercedes C-Class</div>
+        <div class="model-count">1 vehicle</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚗</div>
+        <div class="model-name">Subaru Levorg</div>
+        <div class="model-count">1 vehicle</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">⚡</div>
+        <div class="model-name">Mercedes-AMG GLE</div>
+        <div class="model-count">1 vehicle</div>
+      </a>
+      <a href="pages/listing.html" class="model-card">
+        <div class="model-img-placeholder">🚘</div>
+        <div class="model-name">Toyota Hilux Surf</div>
+        <div class="model-count">1 vehicle</div>
+      </a>
+      <a href="pages/models.html" class="model-card" style="background:var(--primary);border-color:var(--primary);">
+        <div class="model-img-placeholder" style="font-size:30px;">+</div>
+        <div class="model-name" style="color:white;">View All</div>
+        <div class="model-count" style="color:rgba(255,255,255,.7);">100+ models</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SAVE TIME / REQUEST SECTION ===================== -->
+<section class="request-section section-gap">
+  <div class="container">
+    <div class="request-inner">
+      <div class="request-text">
+        <span class="section-label">Smart Car Search</span>
+        <h2 class="section-title">Save Time &amp; Money<br>Searching For Your<br><span style="color:var(--primary)">Next Car</span></h2>
+        <p class="section-subtitle">We'll do the hard work for you. Tell us what you want and we'll match you with the right vehicles from verified dealers.</p>
+        <div class="request-steps">
+          <div class="request-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Tell us what you want</h4>
+              <p>Specify your make, model, budget and preferences.</p>
+            </div>
+          </div>
+          <div class="request-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>We match you with dealers</h4>
+              <p>Trusted dealers respond with their best offers.</p>
+            </div>
+          </div>
+          <div class="request-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Choose &amp; drive away</h4>
+              <p>Pick the best deal and book a test drive.</p>
+            </div>
+          </div>
+        </div>
+        <a href="pages/listing.html" class="btn btn-primary btn-lg">Submit a Request <i class="bi bi-arrow-right"></i></a>
+      </div>
+      <div class="request-visual">
+        <div class="request-form-preview">
+          <span class="rfp-label">Quick Request Form</span>
+          <div class="rfp-row">
+            <select class="rfp-field">
+              <option>Select Make</option>
+              <option>Toyota</option>
+              <option>Subaru</option>
+              <option>Mazda</option>
+            </select>
+            <select class="rfp-field">
+              <option>Select Model</option>
+            </select>
+          </div>
+          <div class="rfp-row">
+            <input class="rfp-field" type="text" placeholder="Min Year (e.g. 2018)" />
+            <input class="rfp-field" type="text" placeholder="Max Budget (KES)" />
+          </div>
+          <select class="rfp-field" style="width:100%;display:block;">
+            <option>Transmission Preference</option>
+            <option>Automatic</option>
+            <option>Manual</option>
+            <option>CVT</option>
+          </select>
+          <input class="rfp-field" type="text" placeholder="Your phone number" style="width:100%;display:block;" />
+          <button class="btn btn-primary btn-lg w-100 mt-2" style="justify-content:center;border:none;"><i class="bi bi-send"></i> &nbsp;Submit Request</button>
+          <p style="font-size:12px;color:rgba(255,255,255,.4);text-align:center;margin-top:12px;">Dealers will contact you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SELL YOUR CAR ===================== -->
+<section class="sell-section section-gap">
+  <div class="container">
+    <div class="sell-inner">
+      <div class="sell-visual">
+        <div class="sell-img">
+          <img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&q=80" alt="Sell your car" loading="lazy" />
+          <div class="sell-floater">
+            <div class="sf-icon"><i class="bi bi-cash-coin"></i></div>
+            <div class="sf-text">
+              <h5>Get the Best Price</h5>
+              <p>Potential buyers are waiting for you</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sell-text">
+        <span class="section-label">Sell With Us</span>
+        <h2 class="section-title">Ready to Sell<br>One or More Cars?<br><span>Buyers Are Waiting.</span></h2>
+        <p class="section-subtitle">List your vehicle in minutes and reach thousands of active buyers across Kenya. No hidden fees. No hassle.</p>
+        <div class="sell-features">
+          <div class="sell-feature">
+            <div class="sf-check"><i class="bi bi-check-lg"></i></div>
+            <p>Free listings for private sellers — zero commission</p>
+          </div>
+          <div class="sell-feature">
+            <div class="sf-check"><i class="bi bi-check-lg"></i></div>
+            <p>Reach 50,000+ active car buyers monthly</p>
+          </div>
+          <div class="sell-feature">
+            <div class="sf-check"><i class="bi bi-check-lg"></i></div>
+            <p>Dealer packages with premium placement &amp; analytics</p>
+          </div>
+          <div class="sell-feature">
+            <div class="sf-check"><i class="bi bi-check-lg"></i></div>
+            <p>Get a free valuation before you list</p>
+          </div>
+        </div>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="pages/sell.html" class="btn btn-primary btn-lg">List Your Car <i class="bi bi-arrow-right"></i></a>
+          <a href="#" class="btn btn-ghost btn-lg">Get a Valuation</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ARTICLES ===================== -->
+<section class="articles-section section-gap">
+  <div class="container">
+    <div class="listings-header">
+      <div>
+        <span class="section-label">Stay Informed</span>
+        <h2 class="section-title">Guides &amp; <span>News</span></h2>
+      </div>
+      <a href="pages/articles.html" class="btn btn-ghost">All Articles <i class="bi bi-arrow-right"></i></a>
+    </div>
+
+    <div class="articles-grid">
+
+      <div class="article-card">
+        <div class="article-img">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Article" loading="lazy" />
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Buying Guide</span>
+          <h3 class="article-title">How to Import a Car from Japan to Kenya in 2025</h3>
+          <p class="article-excerpt">Everything you need to know about the import process, KRA duties, inspection requirements and hidden costs.</p>
+          <div class="article-meta">
+            <div class="article-author">
+              <div class="author-ava">JM</div>
+              <span>James Mwangi</span>
+            </div>
+            <span>June 2, 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-img">
+          <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=600&q=80" alt="Article" loading="lazy" />
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Review</span>
+          <h3 class="article-title">Toyota Hilux vs Ford Ranger: Which Pickup Wins in Kenya?</h3>
+          <p class="article-excerpt">A head-to-head comparison of Kenya's two most popular work trucks on off-road performance, value and reliability.</p>
+          <div class="article-meta">
+            <div class="article-author">
+              <div class="author-ava">AK</div>
+              <span>Aisha Kamau</span>
+            </div>
+            <span>May 28, 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-img">
+          <img src="https://images.unsplash.com/photo-1591293836027-e05b48473b67?w=600&q=80" alt="Article" loading="lazy" />
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Finance</span>
+          <h3 class="article-title">Car Financing in Kenya: Banks vs SACCOs — What's Better?</h3>
+          <p class="article-excerpt">A breakdown of interest rates, eligibility criteria and total cost of financing a car through different providers.</p>
+          <div class="article-meta">
+            <div class="article-author">
+              <div class="author-ava">RO</div>
+              <span>Rita Omondi</span>
+            </div>
+            <span>May 20, 2025</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" style="font-family:var(--font-display);font-size:22px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;">
+          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
+          Car<span style="color:var(--primary)">Cat</span>
+        </a>
+        <p>Kenya's most trusted marketplace for new and used vehicles. Find, compare and connect with verified dealers nationwide.</p>
+        <div class="footer-socials">
+          <a class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-instagram"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-youtube"></i></a>
+          <a class="social-btn" href="#"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <div class="footer-app">
+          <div class="app-badge"><i class="bi bi-apple"></i><div class="app-badge-text">Download on the<strong>App Store</strong></div></div>
+          <div class="app-badge"><i class="bi bi-google-play"></i><div class="app-badge-text">Get it on<strong>Google Play</strong></div></div>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Browse Cars</h5>
+        <ul>
+          <li><a href="pages/listing.html">New Cars</a></li>
+          <li><a href="pages/listing.html">Used Cars</a></li>
+          <li><a href="pages/listing.html">Electric Cars</a></li>
+          <li><a href="pages/listing.html">SUVs &amp; 4x4s</a></li>
+          <li><a href="pages/listing.html">Pickups &amp; Vans</a></li>
+          <li><a href="pages/listing.html">Classic Cars</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Car Finance</a></li>
+          <li><a href="#">Car Insurance</a></li>
+          <li><a href="#">History Check</a></li>
+          <li><a href="#">Free Valuation</a></li>
+          <li><a href="#">Import Services</a></li>
+          <li><a href="#">Test Drive</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>For Dealers</h5>
+        <ul>
+          <li><a href="pages/sell.html">List a Vehicle</a></li>
+          <li><a href="#">Dealer Packages</a></li>
+          <li><a href="#">Dealer Dashboard</a></li>
+          <li><a href="#">Advertising</a></li>
+          <li><a href="#">Become a Partner</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="pages/articles.html">News &amp; Guides</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Help Centre</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 CarCat Kenya. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Settings</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
