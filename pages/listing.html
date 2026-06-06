@@ -1,101 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Browse Cars — CarCat</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Cars — Motor Connect Africa</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar-wrap">
+<header class="site-header">
   <div class="top-bar">
     <div class="container">
-      <div class="top-bar-links">
+      <div class="top-bar-left">
         <a href="#"><i class="bi bi-telephone"></i> +254 700 000 000</a>
-        <a href="#"><i class="bi bi-envelope"></i> hello@carcat.co.ke</a>
+        <a href="#"><i class="bi bi-envelope"></i> hello@motorconnect.africa</a>
       </div>
-      <div class="top-bar-links">
+      <div class="top-bar-right">
         <a href="sell.html">Sell a Car</a>
         <a href="#">Finance Calculator</a>
         <a href="#">Sign In</a>
       </div>
     </div>
   </div>
-  <nav class="navbar">
+  <nav class="main-nav">
     <div class="container">
-      <div class="navbar-logo">
-        <a href="../index.html">
-          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
-          Car<span>Cat</span>
-        </a>
+      <div class="nav-logo">
+        <a href="../index.html"><img src="../img/logo.png" alt="Motor Connect Africa"/></a>
       </div>
-      <ul class="navbar-nav">
-        <li class="nav-item"><a href="listing.html" class="nav-link active">Cars <i class="bi bi-chevron-down"></i></a>
-          <div class="nav-dropdown">
-            <a href="#"><i class="bi bi-stars"></i> New Cars</a>
-            <a href="#"><i class="bi bi-car-front"></i> Used Cars</a>
-            <a href="#"><i class="bi bi-lightning-charge"></i> Electric</a>
-            <a href="#"><i class="bi bi-truck"></i> SUVs &amp; 4x4s</a>
+      <ul class="nav-links">
+        <li class="nav-item-wrap">
+          <a href="listing.html" class="nav-link-item active">Cars <i class="bi bi-chevron-down chev"></i></a>
+          <div class="nav-drop">
+            <a href="listing.html"><i class="bi bi-stars"></i> New Cars</a>
+            <a href="listing.html"><i class="bi bi-car-front"></i> Used Cars</a>
+            <a href="listing.html"><i class="bi bi-lightning-charge"></i> Electric Cars</a>
+            <a href="listing.html"><i class="bi bi-truck"></i> SUVs &amp; 4x4s</a>
+            <a href="listing.html"><i class="bi bi-truck-front"></i> Pickups</a>
           </div>
         </li>
-        <li class="nav-item"><a href="dealers.html" class="nav-link">Dealers</a></li>
-        <li class="nav-item"><a href="models.html" class="nav-link">Models</a></li>
-        <li class="nav-item"><a href="articles.html" class="nav-link">News</a></li>
+        <li class="nav-item-wrap"><a href="#" class="nav-link-item">Browse By <i class="bi bi-chevron-down chev"></i></a>
+          <div class="nav-mega">
+            <a href="listing.html" class="mega-item"><i class="bi bi-tag"></i> Make</a>
+            <a href="models.html" class="mega-item"><i class="bi bi-grid"></i> Model</a>
+            <a href="listing.html" class="mega-item"><i class="bi bi-cash-coin"></i> Price Range</a>
+            <a href="listing.html" class="mega-item"><i class="bi bi-geo-alt"></i> Location</a>
+            <a href="listing.html" class="mega-item"><i class="bi bi-fuel-pump"></i> Fuel Type</a>
+            <a href="listing.html" class="mega-item"><i class="bi bi-calendar3"></i> Year</a>
+          </div>
+        </li>
+        <li class="nav-item-wrap"><a href="dealers.html" class="nav-link-item">Dealers</a></li>
+        <li class="nav-item-wrap"><a href="models.html" class="nav-link-item">Models</a></li>
+        <li class="nav-item-wrap"><a href="articles.html" class="nav-link-item">News</a></li>
       </ul>
-      <div class="navbar-actions">
-        <button class="nav-icon-btn"><i class="bi bi-heart"></i></button>
+      <div class="nav-actions">
+        <button class="nav-icon-btn" title="Saved"><i class="bi bi-heart"></i></button>
         <a href="sell.html" class="btn btn-primary btn-sm">+ List a Car</a>
-        <button class="navbar-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+        <button class="nav-hamburger" id="hamburger"><i class="bi bi-list"></i></button>
       </div>
     </div>
   </nav>
-</div>
-<div class="mobile-nav" id="mobileNav">
-  <a href="../index.html" class="mobile-nav-link">Home <i class="bi bi-chevron-right"></i></a>
-  <a href="listing.html" class="mobile-nav-link">Browse Cars <i class="bi bi-chevron-right"></i></a>
-  <a href="dealers.html" class="mobile-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+</header>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="mob-nav-link mob-toggle">Cars <i class="bi bi-chevron-right mob-chev"></i></div>
+  <div class="mob-sub">
+    <a href="listing.html"><i class="bi bi-stars"></i> New Cars</a>
+    <a href="listing.html"><i class="bi bi-car-front"></i> Used Cars</a>
+    <a href="listing.html"><i class="bi bi-lightning-charge"></i> Electric</a>
+    <a href="listing.html"><i class="bi bi-truck"></i> SUVs &amp; 4x4s</a>
+  </div>
+  <a href="dealers.html" class="mob-nav-link">Dealers <i class="bi bi-chevron-right"></i></a>
+  <a href="models.html" class="mob-nav-link">Models <i class="bi bi-chevron-right"></i></a>
+  <a href="articles.html" class="mob-nav-link">News &amp; Guides <i class="bi bi-chevron-right"></i></a>
+  <div class="mob-actions">
+    <a href="sell.html" class="btn btn-primary">+ List a Car</a>
+    <a href="#" class="btn btn-ghost">Sign In</a>
+  </div>
 </div>
 
-<!-- LISTING PAGE -->
-<div class="listing-page">
-
-  <!-- Hero bar -->
-  <div class="listing-hero">
+<div class="page-top">
+  <!-- Listing hero bar -->
+  <div style="background:var(--surface);padding:22px 0;border-bottom:1px solid var(--border);">
     <div class="container">
-      <div class="listing-hero-inner">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
         <div>
-          <div class="listing-breadcrumb">
-            <a href="../index.html">Home</a>
-            <span class="sep">/</span>
-            <span>Browse Cars</span>
+          <div class="listing-breadcrumb" style="margin-bottom:6px;">
+            <a href="../index.html">Home</a><span class="sep">/</span><span>Browse Cars</span>
           </div>
-          <h1 style="font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--secondary);margin-top:8px;">All Vehicles</h1>
+          <h1 style="font-family:var(--font-display);font-size:20px;font-weight:800;color:var(--secondary);margin:0;">All Vehicles</h1>
         </div>
-        <!-- Inline search bar -->
-        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;flex:1;max-width:620px;margin-left:32px;">
-          <select class="field-select" style="flex:1;min-width:120px;height:42px;">
-            <option>Any Make</option>
-            <option>Toyota</option>
-            <option>Subaru</option>
-            <option>Mazda</option>
-          </select>
-          <select class="field-select" style="flex:1;min-width:120px;height:42px;">
-            <option>Any Model</option>
-          </select>
-          <select class="field-select" style="width:140px;height:42px;">
-            <option>Any Price</option>
-            <option>Under 1M</option>
-            <option>1M – 3M</option>
-            <option>3M – 5M</option>
-            <option>5M+</option>
-          </select>
-          <button class="search-btn" style="height:42px;padding:0 20px;">
-            <i class="bi bi-search"></i> Search
-          </button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;flex:1;max-width:580px;margin-left:24px;">
+          <select class="field-select" style="flex:1;min-width:110px;height:40px;font-size:13px;"><option>Any Make</option><option>Toyota</option><option>Subaru</option><option>Mazda</option><option>Mercedes-Benz</option></select>
+          <select class="field-select" style="flex:1;min-width:110px;height:40px;font-size:13px;"><option>Any Model</option></select>
+          <select class="field-select" style="width:130px;height:40px;font-size:13px;"><option>Any Price</option><option>Under 1M</option><option>1M–3M</option><option>3M–5M</option><option>5M+</option></select>
+          <button class="search-btn" style="height:40px;padding:0 18px;font-size:13px;"><i class="bi bi-search"></i> Search</button>
         </div>
       </div>
     </div>
@@ -104,325 +103,143 @@
   <div class="container">
     <div class="listing-layout">
 
-      <!-- SIDEBAR FILTER -->
+      <!-- SIDEBAR -->
       <aside class="filter-sidebar">
         <div class="filter-card">
           <div class="filter-card-header">
             <h3><i class="bi bi-sliders" style="color:var(--primary);margin-right:6px;"></i> Filters</h3>
             <button class="filter-clear">Clear all</button>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Condition <i class="bi bi-chevron-down"></i></div>
             <div class="filter-options">
-              <label class="filter-check"><input type="checkbox" checked /> <span>Used</span> <span class="count">(89)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>New</span> <span class="count">(12)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Demo</span> <span class="count">(5)</span></label>
+              <label class="filter-check"><input type="checkbox" checked/><span>Used</span><span class="count">(89)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>New</span><span class="count">(12)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Demo</span><span class="count">(5)</span></label>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Price Range (KES) <i class="bi bi-chevron-down"></i></div>
             <div class="price-range">
-              <input class="range-input" type="text" placeholder="Min" />
-              <input class="range-input" type="text" placeholder="Max" />
+              <input class="range-input" type="text" placeholder="Min"/>
+              <input class="range-input" type="text" placeholder="Max"/>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Make <i class="bi bi-chevron-down"></i></div>
             <div class="filter-options">
-              <label class="filter-check"><input type="checkbox" /> <span>Toyota</span> <span class="count">(34)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Subaru</span> <span class="count">(21)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Mazda</span> <span class="count">(18)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Mercedes-Benz</span> <span class="count">(12)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>BMW</span> <span class="count">(9)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Land Rover</span> <span class="count">(7)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Nissan</span> <span class="count">(6)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Toyota</span><span class="count">(34)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Subaru</span><span class="count">(21)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Mazda</span><span class="count">(18)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Mercedes-Benz</span><span class="count">(12)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>BMW</span><span class="count">(9)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Land Rover</span><span class="count">(7)</span></label>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Body Type <i class="bi bi-chevron-down"></i></div>
             <div class="filter-options">
-              <label class="filter-check"><input type="checkbox" /> <span>SUV / 4x4</span> <span class="count">(41)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Sedan</span> <span class="count">(28)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Pickup / Van</span> <span class="count">(16)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Hatchback</span> <span class="count">(11)</span></label>
-              <label class="filter-check"><input type="checkbox" /> <span>Wagon</span> <span class="count">(6)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>SUV / 4x4</span><span class="count">(41)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Sedan</span><span class="count">(28)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Pickup</span><span class="count">(16)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Hatchback</span><span class="count">(11)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Wagon</span><span class="count">(6)</span></label>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Year <i class="bi bi-chevron-down"></i></div>
             <div class="price-range">
-              <select class="range-input">
-                <option>From</option>
-                <option>2015</option><option>2016</option><option>2017</option>
-                <option>2018</option><option>2019</option><option>2020</option>
-                <option>2021</option><option>2022</option><option>2023</option>
-              </select>
-              <select class="range-input">
-                <option>To</option>
-                <option>2025</option><option>2024</option><option>2023</option>
-                <option>2022</option><option>2021</option><option>2020</option>
-              </select>
+              <select class="range-input"><option>From</option><option>2015</option><option>2016</option><option>2017</option><option>2018</option><option>2019</option><option>2020</option><option>2021</option></select>
+              <select class="range-input"><option>To</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Transmission <i class="bi bi-chevron-down"></i></div>
             <div class="filter-options">
-              <label class="filter-check"><input type="checkbox" /> Automatic <span class="count">(78)</span></label>
-              <label class="filter-check"><input type="checkbox" /> Manual <span class="count">(22)</span></label>
-              <label class="filter-check"><input type="checkbox" /> CVT <span class="count">(8)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Automatic</span><span class="count">(78)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Manual</span><span class="count">(22)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>CVT</span><span class="count">(8)</span></label>
             </div>
           </div>
-
           <div class="filter-group">
             <div class="filter-group-title">Fuel Type <i class="bi bi-chevron-down"></i></div>
             <div class="filter-options">
-              <label class="filter-check"><input type="checkbox" /> Petrol <span class="count">(58)</span></label>
-              <label class="filter-check"><input type="checkbox" /> Diesel <span class="count">(36)</span></label>
-              <label class="filter-check"><input type="checkbox" /> Hybrid <span class="count">(10)</span></label>
-              <label class="filter-check"><input type="checkbox" /> Electric <span class="count">(4)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Petrol</span><span class="count">(58)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Diesel</span><span class="count">(36)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Hybrid</span><span class="count">(10)</span></label>
+              <label class="filter-check"><input type="checkbox"/><span>Electric</span><span class="count">(4)</span></label>
             </div>
           </div>
-
-          <div class="filter-group" style="border-bottom:none;">
-            <button class="btn btn-primary w-100" style="justify-content:center;">Apply Filters</button>
+          <div class="filter-group">
+            <button class="btn btn-primary" style="width:100%;justify-content:center;border:none;">Apply Filters</button>
           </div>
         </div>
       </aside>
 
       <!-- RESULTS -->
-      <div class="listing-results">
+      <div>
         <div class="results-bar">
           <p class="results-count"><strong>108</strong> vehicles found</p>
           <div class="results-controls">
-            <select class="sort-select">
-              <option>Sort: Newest First</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Year: Newest First</option>
-              <option>Mileage: Lowest</option>
-            </select>
+            <select class="sort-select"><option>Sort: Newest First</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Mileage: Lowest</option></select>
             <div class="view-toggle">
-              <button class="view-btn active" title="Grid view"><i class="bi bi-grid"></i></button>
-              <button class="view-btn" title="List view"><i class="bi bi-list-ul"></i></button>
+              <button class="view-btn active" title="Grid"><i class="bi bi-grid"></i></button>
+              <button class="view-btn" title="List"><i class="bi bi-list-ul"></i></button>
             </div>
           </div>
         </div>
 
         <div class="listing-grid">
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="Toyota Prado" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span><span class="badge-featured">Featured</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Toyota</div>
-              <div class="vehicle-name">Land Cruiser Prado TZG</div>
-              <div class="vehicle-price">KES 9,000,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2020</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 45k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span><span class="badge-featured">Featured</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Toyota</div><div class="vehicle-name">Land Cruiser Prado TZG</div><div class="vehicle-price">KES 9,000,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2020</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 45k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Auto</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="Mercedes GLE" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Mercedes-AMG</div>
-              <div class="vehicle-name">GLE 400D 4Matic</div>
-              <div class="vehicle-price">KES 12,250,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2019</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 62k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Mercedes-AMG</div><div class="vehicle-name">GLE 400D 4Matic</div><div class="vehicle-price">KES 12,250,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2019</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 62k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Auto</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80" alt="Subaru Forester" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Subaru</div>
-              <div class="vehicle-name">Forester XT 2.0T</div>
-              <div class="vehicle-price">KES 2,450,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2017</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 78k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Subaru</div><div class="vehicle-name">Forester XT 2.0T</div><div class="vehicle-price">KES 2,450,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2017</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 78k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Auto</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=600&q=80" alt="Mazda Axela" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Mazda</div>
-              <div class="vehicle-name">Axela Sport 2.0L</div>
-              <div class="vehicle-price">KES 1,680,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2016</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 91k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Mazda</div><div class="vehicle-name">Axela Sport 2.0L</div><div class="vehicle-price">KES 1,680,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2016</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 91k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Auto</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Brill Motors</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="Hilux" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Toyota</div>
-              <div class="vehicle-name">Hilux GD-6 4x4 DC</div>
-              <div class="vehicle-price">KES 4,800,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2021</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 38k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Manual</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa Motors</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Toyota</div><div class="vehicle-name">Hilux GD-6 4x4 DC</div><div class="vehicle-price">KES 4,800,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2021</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 38k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Manual</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Baypoa Motors</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
           <div class="vehicle-card" onclick="window.location='detail.html'">
-            <div class="vehicle-img-wrap">
-              <img src="https://images.unsplash.com/photo-1608023136037-626dad6c2b44?w=600&q=80" alt="Range Rover" loading="lazy" />
-              <div class="vehicle-badges"><span class="badge-used">Used</span></div>
-              <button class="vehicle-fav"><i class="bi bi-heart"></i></button>
-            </div>
-            <div class="vehicle-body">
-              <div class="vehicle-make">Land Rover</div>
-              <div class="vehicle-name">Range Rover Vogue</div>
-              <div class="vehicle-price">KES 26,500,000</div>
-              <div class="vehicle-specs">
-                <span class="spec-tag"><i class="bi bi-calendar3"></i> 2022</span>
-                <span class="spec-tag"><i class="bi bi-speedometer2"></i> 18k km</span>
-                <span class="spec-tag"><i class="bi bi-gear"></i> Auto</span>
-              </div>
-              <div class="vehicle-footer">
-                <span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span>
-                <span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span>
-              </div>
-            </div>
+            <div class="vehicle-img-wrap"><img src="https://images.unsplash.com/photo-1608023136037-626dad6c2b44?w=600&q=80" alt="" loading="lazy"/><div class="vehicle-badges"><span class="badge-used">Used</span></div><button class="vehicle-fav"><i class="bi bi-heart"></i></button></div>
+            <div class="vehicle-body"><div class="vehicle-make">Land Rover</div><div class="vehicle-name">Range Rover Vogue</div><div class="vehicle-price">KES 26,500,000</div><div class="vehicle-specs"><span class="spec-tag"><i class="bi bi-calendar3"></i> 2022</span><span class="spec-tag"><i class="bi bi-speedometer2"></i> 18k km</span><span class="spec-tag"><i class="bi bi-gear"></i> Auto</span></div><div class="vehicle-footer"><span class="vehicle-dealer"><i class="bi bi-shop"></i> Aquatadas</span><span class="vehicle-action">View <i class="bi bi-arrow-right"></i></span></div></div>
           </div>
-
-        </div><!-- /listing-grid -->
+        </div>
 
         <div class="pagination">
           <button class="page-btn"><i class="bi bi-chevron-left"></i></button>
-          <button class="page-btn active">1</button>
-          <button class="page-btn">2</button>
-          <button class="page-btn">3</button>
-          <span style="color:var(--text-light);padding:0 4px;">...</span>
+          <button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button>
+          <span style="color:var(--text-light);padding:0 2px;">…</span>
           <button class="page-btn">12</button>
           <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
         </div>
-
-      </div><!-- /listing-results -->
-    </div><!-- /listing-layout -->
-  </div><!-- /container -->
-</div><!-- /listing-page -->
-
-<!-- FOOTER -->
-<footer class="site-footer" style="margin-top:60px;">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="../index.html" style="font-family:var(--font-display);font-size:20px;font-weight:800;color:white;display:flex;align-items:center;gap:8px;">
-          <div class="logo-icon"><i class="bi bi-car-front-fill"></i></div>
-          Car<span style="color:var(--primary)">Cat</span>
-        </a>
-        <p>Kenya's most trusted marketplace for new and used vehicles.</p>
-        <div class="footer-socials">
-          <a class="social-btn" href="#"><i class="bi bi-facebook"></i></a>
-          <a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a>
-          <a class="social-btn" href="#"><i class="bi bi-instagram"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h5>Browse Cars</h5>
-        <ul>
-          <li><a href="listing.html">New Cars</a></li>
-          <li><a href="listing.html">Used Cars</a></li>
-          <li><a href="listing.html">SUVs &amp; 4x4s</a></li>
-          <li><a href="listing.html">Pickups</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="#">Car Finance</a></li>
-          <li><a href="#">Insurance</a></li>
-          <li><a href="#">Valuation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="articles.html">News</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>For Dealers</h5>
-        <ul>
-          <li><a href="sell.html">List a Vehicle</a></li>
-          <li><a href="#">Dealer Packages</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 CarCat Kenya. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
       </div>
     </div>
   </div>
-</footer>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><div class="footer-logo"><img src="../img/logo.png" alt="Motor Connect Africa"/></div><p>Africa's most trusted marketplace for new and used vehicles.</p><div class="footer-socials"><a class="social-btn" href="#"><i class="bi bi-facebook"></i></a><a class="social-btn" href="#"><i class="bi bi-twitter-x"></i></a><a class="social-btn" href="#"><i class="bi bi-instagram"></i></a><a class="social-btn" href="#"><i class="bi bi-youtube"></i></a></div></div>
+        <div class="footer-col"><h5>Browse Cars</h5><ul><li><a href="listing.html">New Cars</a></li><li><a href="listing.html">Used Cars</a></li><li><a href="listing.html">SUVs &amp; 4x4s</a></li><li><a href="listing.html">Pickups</a></li></ul></div>
+        <div class="footer-col"><h5>Services</h5><ul><li><a href="#">Car Finance</a></li><li><a href="#">Insurance</a></li><li><a href="#">Valuation</a></li></ul></div>
+        <div class="footer-col"><h5>For Dealers</h5><ul><li><a href="sell.html">List a Vehicle</a></li><li><a href="#">Dealer Packages</a></li></ul></div>
+        <div class="footer-col"><h5>Company</h5><ul><li><a href="#">About Us</a></li><li><a href="articles.html">News</a></li><li><a href="#">Contact</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 Motor Connect Africa. All rights reserved.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div></div>
+    </div>
+  </footer>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/main.js"></script>
